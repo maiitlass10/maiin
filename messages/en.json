@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "MAIIN · Shop fashion online",
+    "description": "MAIIN is an online clothing store in Syria: women, men, kids and accessories. Pay on delivery or with Sham Cash, with delivery to every governorate."
+  },
+  "announcement": "Free shipping on orders over {amount} · Pay on delivery or with Sham Cash",
+  "header": {
+    "searchPlaceholder": "Search dresses, jackets, bags...",
+    "search": "Search",
+    "account": "Account",
+    "wishlist": "Wishlist",
+    "bag": "Bag",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "عربي",
+    "switchLanguageLabel": "التبديل إلى العربية"
+  },
+  "categories": {
+    "new": "New in",
+    "women": "Women",
+    "men": "Men",
+    "kids": "Kids",
+    "dresses": "Dresses",
+    "tops": "Tops & tees",
+    "outerwear": "Jackets & coats",
+    "bottoms": "Trousers & skirts",
+    "shoes": "Shoes",
+    "bags": "Bags",
+    "sale": "Sale"
+  },
+  "home": {
+    "kicker": "Coming soon",
+    "title": "Everyday fashion at prices you'll love",
+    "text": "We're getting the MAIIN store ready. Hundreds of new pieces, delivery across Syria, and payment on delivery or with Sham Cash.",
+    "cta": "Follow us on Instagram",
+    "sprintNote": "Sprint 0: the foundation is ready. The full homepage arrives in Sprint 1."
+  },
+  "trust": {
+    "delivery": "Delivery across Syria",
+    "deliveryText": "Within 2 to 5 working days",
+    "payment": "Pay on delivery",
+    "paymentText": "Or with Sham Cash",
+    "exchange": "7-day exchanges",
+    "exchangeText": "If the size doesn't fit"
+  },
+  "footer": {
+    "about": "MAIIN brings you the latest fashion at fair prices, delivered to every governorate.",
+    "shop": "Shop",
+    "help": "Help",
+    "company": "MAIIN",
+    "trackOrder": "Track your order",
+    "shipping": "Shipping & delivery",
+    "returns": "Exchanges & returns",
+    "sizeGuide": "Size guide",
+    "aboutUs": "About us",
+    "contact": "Contact us",
+    "privacy": "Privacy policy",
+    "terms": "Terms & conditions",
+    "payWith": "Payment methods",
+    "cod": "Pay on delivery",
+    "shamcash": "Sham Cash",
+    "rights": "© {year} MAIIN. All rights reserved."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The link may be wrong, or the page was removed.",
+    "back": "Back to home"
+  }
+}

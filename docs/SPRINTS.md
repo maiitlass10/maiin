@@ -25,10 +25,16 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [x] Security: patched postcss; production dependencies report 0 vulnerabilities
 - Placeholder photos from Unsplash; rack cut-outs made with automatic background removal
 
-## Sprint 2 · Shop and product · المتجر والمنتج
-- Category pages: filters (size, colour, price), sorting, infinite scroll
-- Product page: gallery with zoom, colours, sizes, size chart, reviews, related products
-- Search results
+## ✅ Sprint 2 · Shop and product · المتجر والمنتج
+- [x] Category pages for all 11 sections (`/c/women`, `/c/sale`, ...), pre-built for speed
+- [x] Filters: size (hides sold-out), colour, price range, on-sale only; active filter chips; filters kept in the URL so pages can be shared
+- [x] Sorting: recommended, newest, price both ways, best selling, top rated
+- [x] Infinite scroll, empty state, mobile filter sheet
+- [x] Product page: zoomable photo, colour and size pickers with sold-out sizes, size guide table, quantity, add to bag, wishlist
+- [x] Delivery, payment and exchange info; description, care and shipping sections
+- [x] Reviews summary (example reviews, clearly labelled, until Sprint 4) and related products
+- [x] Search that tolerates Arabic spelling variants (أ/ا, ة/ه, ى/ي, diacritics), with best sellers when nothing matches
+- [x] Product cards link to product pages; search box keeps the current query
 
 ## Sprint 3 · Database and admin · قاعدة البيانات ولوحة التحكم
 - Owner: free Supabase account

@@ -42,7 +42,7 @@ export function Header() {
         </div>
       </div>
       <div className="pb-3 md:hidden">
-        <SearchForm locale={locale} />
+        <SearchForm locale={locale} id="site-search-mobile" />
       </div>
       <div className="hidden md:block">
         <CategoryBar />

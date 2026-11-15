@@ -9,6 +9,8 @@ import { localeDirection, routing } from "@/i18n/routing";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { BottomNav } from "@/components/layout/BottomNav";
+import { StoreProvider } from "@/components/store/StoreProvider";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -45,12 +47,15 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={localeDirection[locale]}>
-      <body className="min-h-dvh flex flex-col">
+      <body className="flex min-h-dvh flex-col pb-[calc(56px+env(safe-area-inset-bottom))] md:pb-0">
         <NextIntlClientProvider>
-          <AnnouncementBar />
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <StoreProvider>
+            <AnnouncementBar />
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <BottomNav />
+          </StoreProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -10,15 +10,20 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [x] Footer with links, social and payment methods
 - [x] Store settings: USD with SYP conversion, free-shipping threshold, payment methods
 - [x] CI: lint and build on every push
-- [ ] Owner: give the repo push access
+- [x] Owner: give the repo push access
 
-## Sprint 1 · Homepage · الصفحة الرئيسية
-- Hero banner carousel with offers
-- Category circles
-- Flash sale with countdown
-- **3D rack showcase** (signature feature)
-- "Recommended for you" product grid with cards (discount badge, rating, sold count, quick add)
-- Mobile bottom navigation
+## ✅ Sprint 1 · Homepage · الصفحة الرئيسية
+- [x] Hero banner carousel: autoplay with pause button, swipe, dots, stops for reduced motion
+- [x] Trust strip: delivery, cash on delivery / Sham Cash, exchanges
+- [x] Category circles
+- [x] Flash sale with a countdown to midnight
+- [x] **3D rack showcase**: receding rail, front piece swings to face the viewer, scroll / swipe / arrow keys, details view with a styling photo
+- [x] "Recommended for you" grid with tabs (all, women, men, kids) and "Show more"
+- [x] Product cards: discount and new badges, rating, sold count, wishlist, quick add with size picker
+- [x] Bag and wishlist saved in the browser, live bag count in the header
+- [x] Mobile bottom navigation
+- [x] Security: patched postcss; production dependencies report 0 vulnerabilities
+- Placeholder photos from Unsplash; rack cut-outs made with automatic background removal
 
 ## Sprint 2 · Shop and product · المتجر والمنتج
 - Category pages: filters (size, colour, price), sorting, infinite scroll

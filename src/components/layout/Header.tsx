@@ -6,6 +6,7 @@ import { SearchForm } from "./SearchForm";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { CategoryBar } from "./CategoryBar";
 import { MobileMenu } from "./MobileMenu";
+import { BagCount } from "@/components/store/BagCount";
 
 export function Header() {
   const t = useTranslations("header");
@@ -14,7 +15,7 @@ export function Header() {
   const icons = [
     { href: "/account", label: t("account"), icon: User, hideOnMobile: true },
     { href: "/wishlist", label: t("wishlist"), icon: Heart, hideOnMobile: true },
-    { href: "/bag", label: t("bag"), icon: ShoppingBag, count: 0 },
+    { href: "/bag", label: t("bag"), icon: ShoppingBag, count: true },
   ];
 
   return (
@@ -32,11 +33,7 @@ export function Header() {
               className={`relative size-11 place-items-center transition-colors hover:bg-soft ${hideOnMobile ? "hidden sm:grid" : "grid"}`}
             >
               <Icon className="size-[22px]" strokeWidth={1.8} aria-hidden />
-              {count !== undefined && (
-                <span className="absolute end-1 top-1 grid min-w-[18px] place-items-center rounded-full bg-sale px-1 font-latin text-[11px] font-bold leading-[18px] text-white">
-                  {count}
-                </span>
-              )}
+              {count && <BagCount />}
             </Link>
           ))}
           <div className="ms-2 hidden lg:block">

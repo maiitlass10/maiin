@@ -41,7 +41,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="gutter mt-16 bg-fg text-bg">
+    <footer className="gutter mt-8 bg-fg text-bg">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 py-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div className="col-span-2 lg:col-span-1">
           <Logo inverted />

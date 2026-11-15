@@ -28,13 +28,6 @@
     "bags": "Bags",
     "sale": "Sale"
   },
-  "home": {
-    "kicker": "Coming soon",
-    "title": "Everyday fashion at prices you'll love",
-    "text": "We're getting the MAIIN store ready. Hundreds of new pieces, delivery across Syria, and payment on delivery or with Sham Cash.",
-    "cta": "Follow us on Instagram",
-    "sprintNote": "Sprint 0: the foundation is ready. The full homepage arrives in Sprint 1."
-  },
   "trust": {
     "delivery": "Delivery across Syria",
     "deliveryText": "Within 2 to 5 working days",
@@ -65,5 +58,77 @@
     "title": "Page not found",
     "text": "The link may be wrong, or the page was removed.",
     "back": "Back to home"
+  },
+  "hero": {
+    "label": "MAIIN offers",
+    "goTo": "Show slide {n}",
+    "pause": "Pause slideshow",
+    "play": "Play slideshow",
+    "prev": "Previous slide",
+    "next": "Next slide",
+    "s1": {
+      "kicker": "The big summer sale",
+      "title": "On thousands of pieces",
+      "text": "For a limited time, and stock is going fast.",
+      "cta": "Shop the sale"
+    },
+    "s2": {
+      "kicker": "New in",
+      "title": "200+ new pieces every week",
+      "text": "The latest trends at prices you'll love.",
+      "cta": "See what's new"
+    },
+    "s3": {
+      "kicker": "The 2027 collection",
+      "title": "Your next look starts here",
+      "text": "Hand-picked pieces for every occasion.",
+      "cta": "Shop women"
+    }
+  },
+  "home": {
+    "shopByCategory": "Shop by category",
+    "flashTitle": "Flash sale",
+    "flashEnds": "Ends in",
+    "flashSub": "Today's deals",
+    "viewAll": "View all",
+    "forYou": "Recommended for you",
+    "tabAll": "All",
+    "showMore": "Show more"
+  },
+  "product": {
+    "new": "New",
+    "sold": "{count}+ sold",
+    "quickAdd": "Quick add: {name}",
+    "addWishlist": "Add {name} to wishlist",
+    "removeWishlist": "Remove {name} from wishlist",
+    "wishAdded": "Added to wishlist",
+    "wishRemoved": "Removed from wishlist",
+    "size": "Size",
+    "chooseSize": "Choose a size",
+    "sizeRequired": "Choose a size first.",
+    "addToBag": "Add to bag",
+    "added": "Added to bag: {name}",
+    "close": "Close"
+  },
+  "rack": {
+    "title": "The collection on the rail",
+    "subtitle": "Flip through the pieces like you would in store",
+    "material": "Material",
+    "color": "Colour",
+    "viewDetails": "View details",
+    "styleIt": "Style it",
+    "back": "Back to collection",
+    "lookAlt": "A suggested look with the {name}",
+    "prev": "Previous piece",
+    "next": "Next piece",
+    "hint": "Scroll over the rail, swipe, or use the arrow keys"
+  },
+  "nav": {
+    "label": "Navigation",
+    "home": "Home",
+    "categories": "Categories",
+    "wishlist": "Wishlist",
+    "bag": "Bag",
+    "account": "Account"
   }
 }

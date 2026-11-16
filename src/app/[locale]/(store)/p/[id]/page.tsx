@@ -8,6 +8,7 @@ import { careFor, descriptionFor, relatedProducts, sampleReviews, sizeChartFor }
 import { getProduct, getProducts, getSettings } from "@/lib/data";
 import { formatSyp, formatUsd } from "@/lib/format";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { SITE_URL } from "@/lib/site";
 import { Gallery } from "@/components/product/Gallery";
 import { ProductPurchase } from "@/components/product/ProductPurchase";
 import { ProductCard } from "@/components/product/ProductCard";
@@ -29,7 +30,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title: p.name[l],
     description: descriptionFor(p)[l],
-    openGraph: { images: [{ url: p.image }] },
+    alternates: { canonical: `/${locale}/p/${id}`, languages: { ar: `/ar/p/${id}`, en: `/en/p/${id}` } },
+    openGraph: { type: "website", title: p.name[l], description: descriptionFor(p)[l], images: [{ url: p.image }] },
   };
 }
 
@@ -60,8 +62,27 @@ export default async function ProductPage({ params }: { params: Params }) {
   const related = relatedProducts(all, p);
   const dist = [5, 4, 3, 2, 1].map((s) => ({ s, pct: s === 5 ? 72 : s === 4 ? 18 : s === 3 ? 6 : s === 2 ? 3 : 1 }));
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: p.name[l],
+    image: (p.images ?? [p.image]).map((src) => new URL(src, SITE_URL).toString()),
+    description: descriptionFor(p)[l],
+    sku: p.id,
+    brand: { "@type": "Brand", name: "MAIIN" },
+    offers: {
+      "@type": "Offer",
+      url: `${SITE_URL}/${locale}/p/${p.id}`,
+      priceCurrency: "USD",
+      price: p.price.toFixed(2),
+      availability: p.sizes.every((s) => p.soldOut?.includes(s)) ? "https://schema.org/OutOfStock" : "https://schema.org/InStock",
+    },
+  };
+
   return (
     <div className="gutter">
+      {/* Structured data so search engines can show price and availability. */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <div className="mx-auto max-w-7xl pb-10">
         <Breadcrumbs
           items={[

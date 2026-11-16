@@ -325,7 +325,24 @@
       "freeFrom": "Free shipping from ($)",
       "fee": "Shipping fee ($)",
       "shamCash": "Sham Cash account number",
-      "shamCashHint": "Shown to customers on their order page when they pay with Sham Cash."
+      "shamCashHint": "Shown to customers on their order page when they pay with Sham Cash.",
+      "contactTitle": "Contact details",
+      "whatsapp": "WhatsApp number",
+      "whatsappHint": "Like 0944123456. Shows a WhatsApp button on the contact page and footer.",
+      "phone": "Phone number",
+      "email": "Company email",
+      "addressAr": "Address in Arabic",
+      "addressEn": "Address in English",
+      "hoursAr": "Opening hours in Arabic",
+      "hoursEn": "Opening hours in English",
+      "socialTitle": "Social media",
+      "instagram": "Instagram link",
+      "facebook": "Facebook link",
+      "tiktok": "TikTok link",
+      "policyTitle": "Policies",
+      "exchangeDays": "Exchange period (days)",
+      "deliveryDays": "Delivery time (working days)",
+      "deliveryDaysHint": "Like 2-5"
     },
     "promos": {
       "title": "Promo codes",
@@ -567,5 +584,139 @@
     "notFound": "We couldn't find this order.",
     "notes": "Notes",
     "crumb": "Order details"
+  },
+  "pages": {
+    "notSet": "Coming soon",
+    "updated": "Last updated: November 2026",
+    "about": {
+      "title": "About us",
+      "intro": "MAIIN is an online clothing store from Syria, bringing you the latest fashion at fair prices, delivered to your door in every governorate.",
+      "sections": [
+        {
+          "h": "What we offer",
+          "p": "Women's, men's and kids' clothing and accessories, refreshed every week. We pick every piece carefully and check its quality before shipping."
+        },
+        {
+          "h": "Why MAIIN",
+          "p": "Clear prices in dollars with the price in pounds, pay on delivery or with Sham Cash, delivery within {deliveryDays} working days, and {exchangeDays}-day exchanges if the size doesn't fit."
+        },
+        {
+          "h": "Get in touch",
+          "p": "Have a question or an idea? We'd love to hear from you. Every way to reach us is on the Contact page."
+        }
+      ]
+    },
+    "contact": {
+      "title": "Contact us",
+      "intro": "The MAIIN team is here to help with any question about an order, a size or a product.",
+      "whatsapp": "WhatsApp",
+      "whatsappCta": "Message us on WhatsApp",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "hours": "Opening hours",
+      "social": "Follow us"
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "intro": "Your privacy matters to us. This page explains what information we collect and how we use it.",
+      "sections": [
+        {
+          "h": "What we collect",
+          "p": "When you create an account or order, we store your name, email, mobile number and delivery address, your bag and wishlist, your orders, and payment receipt photos if you pay with Sham Cash."
+        },
+        {
+          "h": "How we use it",
+          "p": "We use your information to prepare and deliver your order, contact you about it, and improve our service. We don't sell your information or share it with anyone except delivery partners, only as much as delivery needs."
+        },
+        {
+          "h": "Security",
+          "p": "Your information is stored in a protected database, and each customer can only see their own. Receipt photos are kept in private storage that only you and our team can see."
+        },
+        {
+          "h": "Your rights",
+          "p": "You can edit your details from My account, and ask us to delete your account and information at any time by contacting us."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms & conditions",
+      "intro": "By using the MAIIN website and ordering from it, you agree to these terms.",
+      "sections": [
+        {
+          "h": "Prices",
+          "p": "Prices are shown in US dollars; the Syrian pound price is approximate, at the exchange rate on the day of the order. The final price is the one on your order page after confirmation."
+        },
+        {
+          "h": "Orders",
+          "p": "We contact you to confirm every order before shipping. We may cancel an order if stock runs out or the contact details aren't correct, and we'll let you know if that happens."
+        },
+        {
+          "h": "Payment",
+          "p": "Pay the courier on delivery, or with Sham Cash by uploading the transfer receipt. Sham Cash orders with no receipt after 24 hours are cancelled automatically."
+        },
+        {
+          "h": "Promo codes",
+          "p": "Each code has its own conditions (minimum order, validity dates, usage limit). Only one code can be used per order."
+        }
+      ]
+    },
+    "shipping": {
+      "title": "Shipping & delivery",
+      "intro": "We deliver to every governorate in Syria.",
+      "sections": [
+        {
+          "h": "Delivery time",
+          "p": "Your order arrives within {deliveryDays} working days of confirmation; times may vary slightly by governorate."
+        },
+        {
+          "h": "Shipping cost",
+          "p": "Shipping is free on orders over {freeFrom}. Below that, the shipping fee is {fee}."
+        },
+        {
+          "h": "Tracking",
+          "p": "Follow your order at any time from My account → My orders: received, confirmed, preparing, shipped, delivered."
+        }
+      ]
+    },
+    "returns": {
+      "title": "Exchanges & returns",
+      "intro": "We want you to love every piece.",
+      "sections": [
+        {
+          "h": "Exchange period",
+          "p": "You can exchange a size or a piece within {exchangeDays} days of delivery."
+        },
+        {
+          "h": "Conditions",
+          "p": "The piece must be clean, unworn and unwashed, with its tag and original packaging. Underwear and swimwear can't be exchanged for hygiene reasons."
+        },
+        {
+          "h": "How to exchange",
+          "p": "Message us on WhatsApp with your order number and the piece you want to exchange, and we'll arrange pickup and delivery of the replacement."
+        },
+        {
+          "h": "Faulty items",
+          "p": "If a piece arrives faulty or the order is wrong, we replace it free of charge, including shipping."
+        }
+      ]
+    },
+    "sizeGuide": {
+      "title": "Size guide",
+      "intro": "All measurements in centimetres. Between two sizes? Choose the larger one.",
+      "clothes": "Women's and men's clothing",
+      "trousers": "Trousers",
+      "shoes": "Shoes",
+      "kids": "Kids",
+      "how": "How to measure",
+      "howText": "Chest: around the fullest part of the chest. Waist: around the narrowest point. Hip: around the fullest point. Inseam: from the top of the inner thigh to the ankle."
+    },
+    "track": {
+      "title": "Track your order",
+      "intro": "Follow all your orders and their status from your account.",
+      "cta": "Open my orders",
+      "help": "Ordered with another account or have a question? Message us on WhatsApp with your order number.",
+      "contactCta": "Contact us"
+    }
   }
 }

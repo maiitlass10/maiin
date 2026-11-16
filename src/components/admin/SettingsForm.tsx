@@ -48,6 +48,50 @@ export function SettingsForm({ initial }: { initial: SettingsInput }) {
           <input id="s-sham" dir="ltr" value={f.sham_cash_account ?? ""} onChange={(e) => set("sham_cash_account", e.target.value)} className={inputClass} maxLength={100} />
         </Field>
       </Section>
+      <Section title={t("contactTitle")}>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label={t("whatsapp")} htmlFor="s-wa" hint={t("whatsappHint")}>
+            <input id="s-wa" type="tel" dir="ltr" value={f.whatsapp ?? ""} onChange={(e) => set("whatsapp", e.target.value)} className={inputClass} maxLength={30} />
+          </Field>
+          <Field label={t("phone")} htmlFor="s-phone">
+            <input id="s-phone" type="tel" dir="ltr" value={f.phone ?? ""} onChange={(e) => set("phone", e.target.value)} className={inputClass} maxLength={30} />
+          </Field>
+        </div>
+        <Field label={t("email")} htmlFor="s-email">
+          <input id="s-email" type="email" dir="ltr" value={f.email ?? ""} onChange={(e) => set("email", e.target.value)} className={inputClass} maxLength={120} />
+        </Field>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label={t("addressAr")} htmlFor="s-addr-ar">
+            <input id="s-addr-ar" dir="rtl" value={f.address_ar ?? ""} onChange={(e) => set("address_ar", e.target.value)} className={inputClass} maxLength={300} />
+          </Field>
+          <Field label={t("addressEn")} htmlFor="s-addr-en">
+            <input id="s-addr-en" dir="ltr" value={f.address_en ?? ""} onChange={(e) => set("address_en", e.target.value)} className={inputClass} maxLength={300} />
+          </Field>
+          <Field label={t("hoursAr")} htmlFor="s-hours-ar">
+            <input id="s-hours-ar" dir="rtl" value={f.hours_ar ?? ""} onChange={(e) => set("hours_ar", e.target.value)} className={inputClass} maxLength={120} />
+          </Field>
+          <Field label={t("hoursEn")} htmlFor="s-hours-en">
+            <input id="s-hours-en" dir="ltr" value={f.hours_en ?? ""} onChange={(e) => set("hours_en", e.target.value)} className={inputClass} maxLength={120} />
+          </Field>
+        </div>
+      </Section>
+      <Section title={t("socialTitle")}>
+        {(["instagram", "facebook", "tiktok"] as const).map((k) => (
+          <Field key={k} label={t(k)} htmlFor={`s-${k}`}>
+            <input id={`s-${k}`} type="url" dir="ltr" placeholder="https://" value={f[k] ?? ""} onChange={(e) => set(k, e.target.value)} className={inputClass} maxLength={200} />
+          </Field>
+        ))}
+      </Section>
+      <Section title={t("policyTitle")}>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label={t("exchangeDays")} htmlFor="s-exch">
+            <input id="s-exch" type="number" min="0" max="60" dir="ltr" value={f.exchange_days ?? 7} onChange={(e) => set("exchange_days", e.target.value)} className={inputClass} />
+          </Field>
+          <Field label={t("deliveryDays")} htmlFor="s-deliv" hint={t("deliveryDaysHint")}>
+            <input id="s-deliv" dir="ltr" value={f.delivery_days ?? ""} onChange={(e) => set("delivery_days", e.target.value)} className={inputClass} maxLength={20} />
+          </Field>
+        </div>
+      </Section>
       <div className="flex items-center justify-end gap-3">
         {status && (
           <p role="status" className={`me-auto text-sm font-semibold ${status.ok ? "text-ok" : "text-sale"}`}>

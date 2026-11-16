@@ -8,6 +8,7 @@ import "../globals.css";
 import { localeDirection, routing } from "@/i18n/routing";
 import { SettingsProvider } from "@/components/store/SettingsProvider";
 import { getSettings } from "@/lib/data";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -17,10 +18,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
   return {
+    metadataBase: new URL(SITE_URL),
     title: { default: t("title"), template: `%s | MAIIN` },
     description: t("description"),
-    alternates: { languages: { ar: "/ar", en: "/en" } },
-    icons: { icon: "/icon.svg" },
+    applicationName: "MAIIN",
+    alternates: { canonical: `/${locale}`, languages: { ar: "/ar", en: "/en" } },
+    icons: { icon: "/icon.svg", apple: "/icon.svg" },
+    openGraph: { type: "website", siteName: "MAIIN", locale: locale === "ar" ? "ar_SY" : "en_US", title: t("title"), description: t("description") },
+    twitter: { card: "summary_large_image" },
   };
 }
 

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   if (!isListingSlug(slug)) return {};
   const t = await getTranslations({ locale, namespace: "categories" });
   const tl = await getTranslations({ locale, namespace: "listing" });
-  return { title: t(slug), description: tl("metaDescription", { name: t(slug) }) };
+  return { title: t(slug), description: tl("metaDescription", { name: t(slug) }), alternates: { canonical: `/${locale}/c/${slug}`, languages: { ar: `/ar/c/${slug}`, en: `/en/c/${slug}` } } };
 }
 
 export default async function CategoryPage({ params }: { params: Params }) {

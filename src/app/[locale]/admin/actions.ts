@@ -166,7 +166,29 @@ export async function deleteRackPiece(id: string): Promise<ActionResult> {
   }
 }
 
-export type SettingsInput = { syp_per_usd: number | string; free_shipping_from: number | string; shipping_fee: number | string; sham_cash_account?: string };
+export type SettingsInput = {
+  syp_per_usd: number | string;
+  free_shipping_from: number | string;
+  shipping_fee: number | string;
+  sham_cash_account?: string;
+  whatsapp?: string;
+  phone?: string;
+  email?: string;
+  address_ar?: string;
+  address_en?: string;
+  hours_ar?: string;
+  hours_en?: string;
+  instagram?: string;
+  facebook?: string;
+  tiktok?: string;
+  exchange_days?: number | string;
+  delivery_days?: string;
+};
+
+const link = (v: unknown) => {
+  const s = clean(v, 200);
+  return /^https:\/\/[^\s]+$/.test(s) ? s : null;
+};
 
 export async function saveSettings(input: SettingsInput): Promise<ActionResult> {
   try {
@@ -177,7 +199,24 @@ export async function saveSettings(input: SettingsInput): Promise<ActionResult> 
     if (!rate || free === null || fee === null) return { ok: false, error: "invalid numbers" };
     const { error } = await supabase
       .from("settings")
-      .update({ syp_per_usd: rate, free_shipping_from: free, shipping_fee: fee, sham_cash_account: clean(input.sham_cash_account, 100) || null })
+      .update({
+        syp_per_usd: rate,
+        free_shipping_from: free,
+        shipping_fee: fee,
+        sham_cash_account: clean(input.sham_cash_account, 100) || null,
+        whatsapp: clean(input.whatsapp, 30) || null,
+        phone: clean(input.phone, 30) || null,
+        email: clean(input.email, 120) || null,
+        address_ar: clean(input.address_ar, 300) || null,
+        address_en: clean(input.address_en, 300) || null,
+        hours_ar: clean(input.hours_ar, 120) || null,
+        hours_en: clean(input.hours_en, 120) || null,
+        instagram: link(input.instagram),
+        facebook: link(input.facebook),
+        tiktok: link(input.tiktok),
+        exchange_days: Math.max(0, Math.min(60, Math.round(Number(input.exchange_days ?? 7)) || 0)),
+        delivery_days: clean(input.delivery_days, 20) || "2-5",
+      })
       .eq("id", 1);
     if (error) return { ok: false, error: error.message };
     refresh();

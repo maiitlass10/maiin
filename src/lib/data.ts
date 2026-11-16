@@ -9,6 +9,16 @@ export type Settings = {
   freeShippingFrom: number;
   shippingFee: number;
   shamCashAccount: string | null;
+  whatsapp: string | null;
+  phone: string | null;
+  email: string | null;
+  address: { ar: string; en: string } | null;
+  hours: { ar: string; en: string } | null;
+  instagram: string | null;
+  facebook: string | null;
+  tiktok: string | null;
+  exchangeDays: number;
+  deliveryDays: string;
 };
 
 export type ProductRow = {
@@ -97,7 +107,19 @@ const fallbackSettings: Settings = {
   freeShippingFrom: siteConfig.freeShippingFrom,
   shippingFee: siteConfig.shippingFee,
   shamCashAccount: null,
+  whatsapp: null,
+  phone: null,
+  email: null,
+  address: null,
+  hours: null,
+  instagram: null,
+  facebook: null,
+  tiktok: null,
+  exchangeDays: 7,
+  deliveryDays: "2-5",
 };
+
+const pair = (ar: string | null | undefined, en: string | null | undefined) => (ar || en ? { ar: ar || en || "", en: en || ar || "" } : null);
 
 /** Active products in display order. Falls back to the bundled catalogue if Supabase can't be reached. */
 export const getProducts = cache(async (): Promise<Product[]> => {
@@ -132,6 +154,16 @@ export const getSettings = cache(async (): Promise<Settings> => {
     freeShippingFrom: Number(data.free_shipping_from),
     shippingFee: Number(data.shipping_fee),
     shamCashAccount: data.sham_cash_account,
+    whatsapp: data.whatsapp ?? null,
+    phone: data.phone ?? null,
+    email: data.email ?? null,
+    address: pair(data.address_ar, data.address_en),
+    hours: pair(data.hours_ar, data.hours_en),
+    instagram: data.instagram ?? null,
+    facebook: data.facebook ?? null,
+    tiktok: data.tiktok ?? null,
+    exchangeDays: data.exchange_days ?? 7,
+    deliveryDays: data.delivery_days ?? "2-5",
   };
 });
 

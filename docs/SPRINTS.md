@@ -66,7 +66,14 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [x] Owner: ran `supabase/sprint5.sql`, added the Sham Cash account number in Settings
 - [x] Tested order 10001 (cash on delivery, status changes) and order 10002 (Sham Cash, receipt upload, payment confirmed)
 
-## Sprint 6 · Launch · الإطلاق
-- Owner: Vercel account and domain
-- Deploy, performance, SEO, policy pages (privacy, returns, shipping)
-- Full test on phone and desktop
+## 🟡 Sprint 6 · Launch · الإطلاق
+- [x] Contact details, social links, exchange period and delivery time editable in admin Settings (`supabase/sprint6.sql`)
+- [x] Information pages: about, contact (WhatsApp, phone, email, hours, address), privacy, terms, shipping, exchanges, size guide, order tracking
+- [x] Footer social links from settings (hidden until filled in)
+- [x] SEO: sitemap.xml, robots.txt, canonical and hreflang links, share preview image, product structured data (price, availability)
+- [ ] Owner: run `supabase/sprint6.sql` and fill in contact details
+- [ ] Owner: Vercel account, import the repo, first deploy
+- [ ] Supabase: add the live URL to Auth redirect URLs
+- [ ] Check the live site opens from Syria without a VPN
+- [ ] Email service for account emails, then turn "Confirm email" back on
+- [ ] Domain (optional), performance check, replace placeholder products with real ones

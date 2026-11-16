@@ -1,27 +1,27 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import { getProducts, getRackPieces } from "@/lib/data";
+import { bagItemsFrom } from "@/lib/bagItems";
 import { RequireAccount } from "@/components/account/RequireAccount";
+import { CheckoutView } from "@/components/account/CheckoutView";
 
-export const metadata = { robots: { index: false } };
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "checkout" });
+  return { title: t("title"), robots: { index: false } };
+}
 
-/** Placeholder until Sprint 5 builds the checkout. */
 export default async function CheckoutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("checkout");
-  const tb = await getTranslations("bag");
+  const [products, rack] = await Promise.all([getProducts(), getRackPieces()]);
   return (
     <div className="gutter">
-      <div className="mx-auto max-w-2xl py-10 pb-16">
-        <h1 className="mb-6 text-2xl font-black">{t("title")}</h1>
+      <div className="mx-auto max-w-6xl py-6 pb-12">
+        <h1 className="mb-6 text-2xl font-black sm:text-3xl">{t("title")}</h1>
         <RequireAccount>
-          <div className="border border-line p-8 text-center">
-            <p className="text-lg font-bold">{t("soon")}</p>
-            <p className="mt-2 text-muted">{t("soonText")}</p>
-            <Link href="/bag" className="mt-6 inline-flex h-12 items-center border border-fg px-8 font-bold">
-              {tb("title")}
-            </Link>
-          </div>
+          <CheckoutView items={bagItemsFrom(products, rack)} />
         </RequireAccount>
       </div>
     </div>

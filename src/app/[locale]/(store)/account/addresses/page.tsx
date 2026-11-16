@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
@@ -21,7 +22,9 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <Breadcrumbs items={[{ href: "/account", label: ta("title") }, { label: t("title") }]} />
         <h1 className="mb-6 text-2xl font-black sm:text-3xl">{t("title")}</h1>
         <RequireAccount>
-          <AddressBook />
+          <Suspense>
+            <AddressBook />
+          </Suspense>
         </RequireAccount>
       </div>
     </div>

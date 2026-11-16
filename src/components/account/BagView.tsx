@@ -1,44 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Minus, Plus, ShoppingBag, Tag, Trash2, X } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { BagItem } from "@/lib/bagItems";
 import { formatSyp, formatUsd } from "@/lib/format";
 import { useStore } from "@/components/store/StoreProvider";
-import { useSettings } from "@/components/store/SettingsProvider";
 import { checkPromo } from "@/app/[locale]/(store)/actions";
+import { useBagTotals } from "./useBagTotals";
 
 export function BagView({ items }: { items: Record<string, BagItem> }) {
   const t = useTranslations("bag");
   const locale = useLocale() as "ar" | "en";
   const { bag, setQty, removeFromBag, promo, setPromo, user } = useStore();
-  const settings = useSettings();
   const [code, setCode] = useState("");
-  const [promoState, setPromoState] = useState<{ discount: number; error?: string; min?: number }>({ discount: 0 });
   const [pending, start] = useTransition();
-
-  const lines = bag.map((l) => ({ ...l, item: items[l.id] as BagItem | undefined }));
-  const valid = lines.filter((l) => l.item && !l.item.soldOut.includes(l.size));
-  const subtotal = useMemo(() => Math.round(valid.reduce((s, l) => s + l.item!.price * l.qty, 0) * 100) / 100, [valid]);
-  const count = valid.reduce((n, l) => n + l.qty, 0);
-
-  // Re-check the applied code whenever the subtotal changes.
-  useEffect(() => {
-    if (!promo) return setPromoState({ discount: 0 });
-    let live = true;
-    checkPromo(promo, subtotal).then((r) => live && setPromoState(r.ok ? { discount: r.discount } : { discount: 0, error: r.error, min: r.minSubtotal }));
-    return () => {
-      live = false;
-    };
-  }, [promo, subtotal]);
-
-  const discount = promoState.discount;
-  const afterDiscount = Math.max(0, subtotal - discount);
-  const shipping = count === 0 || afterDiscount >= settings.freeShippingFrom ? 0 : settings.shippingFee;
-  const total = Math.round((afterDiscount + shipping) * 100) / 100;
+  const { lines, subtotal, count, discount, afterDiscount, shipping, total, promoState, setPromoState, settings } = useBagTotals(items);
   const left = Math.max(0, settings.freeShippingFrom - afterDiscount);
 
   const apply = (e: React.FormEvent) => {

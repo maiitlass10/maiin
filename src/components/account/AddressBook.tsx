@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { MapPin, Pencil, Plus, Trash2 } from "lucide-react";
 import { browserClient } from "@/lib/supabase/browser";
 import { GOVERNORATES, isSyrianMobile } from "@/lib/governorates";
@@ -16,6 +18,8 @@ export function AddressBook() {
   const tg = useTranslations("governorates");
   const ta = useTranslations("account");
   const { user, toast } = useStore();
+  const router = useRouter();
+  const back = useSearchParams().get("return");
   const supabase = useMemo(() => browserClient(), []);
   const [list, setList] = useState<Address[] | null>(null);
   const [editing, setEditing] = useState<(typeof blank & { id?: string }) | null>(null);
@@ -47,6 +51,7 @@ export function AddressBook() {
     if (error) return toast(ta("genericError", { message: error.message }));
     setEditing(null);
     toast(ta("saved"));
+    if (back === "/checkout") return router.push("/checkout");
     load();
   };
 

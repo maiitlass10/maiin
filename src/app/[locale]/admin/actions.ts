@@ -244,3 +244,22 @@ export async function deletePromo(code: string): Promise<ActionResult> {
     return { ok: false, error: (e as Error).message };
   }
 }
+
+const ORDER_STATUSES = ["new", "confirmed", "preparing", "shipped", "delivered", "cancelled"] as const;
+const PAYMENT_STATUSES = ["unpaid", "awaiting_confirmation", "paid", "refunded"] as const;
+
+export async function updateOrder(id: string, patch: { status?: string; payment_status?: string }): Promise<ActionResult> {
+  try {
+    const supabase = await guard();
+    const row: Record<string, string> = {};
+    if (patch.status && (ORDER_STATUSES as readonly string[]).includes(patch.status)) row.status = patch.status;
+    if (patch.payment_status && (PAYMENT_STATUSES as readonly string[]).includes(patch.payment_status)) row.payment_status = patch.payment_status;
+    if (!Object.keys(row).length) return { ok: false, error: "nothing to update" };
+    const { error } = await supabase.from("orders").update(row).eq("id", id);
+    if (error) return { ok: false, error: error.message };
+    revalidatePath("/", "layout");
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: (e as Error).message };
+  }
+}

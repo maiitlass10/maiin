@@ -36,7 +36,8 @@ export function OrdersList() {
   return (
     <ul className="divide-y divide-line border-y border-line">
       {orders.map((o) => (
-        <li key={o.id} className="flex flex-wrap items-center justify-between gap-3 py-4">
+        <li key={o.id}>
+          <Link href={`/account/orders/${o.id}`} className="flex flex-wrap items-center justify-between gap-3 py-4 hover:bg-soft">
           <div>
             <p className="font-bold">{t("number", { n: o.number })}</p>
             <p className="text-sm text-muted">
@@ -49,6 +50,7 @@ export function OrdersList() {
               <span className="bg-soft px-2 py-0.5 font-semibold">{t(`status_${o.status}`)}</span> <span className="text-muted">{t(`pay_${o.payment_status}`)}</span>
             </p>
           </div>
+          </Link>
         </li>
       ))}
     </ul>

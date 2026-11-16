@@ -201,7 +201,8 @@
       "products": "Products",
       "rack": "Rack",
       "settings": "Settings",
-      "promos": "Promo codes"
+      "promos": "Promo codes",
+      "orders": "Orders"
     },
     "login": {
       "title": "Staff sign in",
@@ -345,6 +346,27 @@
       "paused": "Paused",
       "codeInvalid": "Use 3 to 30 capital letters or numbers.",
       "percentMax": "The percentage must be between 1 and 90."
+    },
+    "orders": {
+      "title": "Orders",
+      "all": "All",
+      "search": "Search by order number, name or phone...",
+      "empty": "No orders.",
+      "awaiting": "Awaiting payment confirmation",
+      "customer": "Customer",
+      "receipt": "Sham Cash receipt",
+      "noReceipt": "No receipt uploaded yet.",
+      "openReceipt": "Open full-size photo",
+      "confirmPayment": "Confirm payment",
+      "markUnpaid": "Mark as unpaid",
+      "setStatus": "Change status",
+      "cancel": "Cancel order",
+      "confirmCancel": "Cancel this order?",
+      "updated": "Saved ✓",
+      "callCustomer": "Call",
+      "whatsapp": "WhatsApp",
+      "newOrders": "New orders",
+      "autoCancelled": "Cancelled {count} Sham Cash orders with no receipt after 24 hours."
     }
   },
   "account": {
@@ -486,7 +508,63 @@
   },
   "checkout": {
     "title": "Checkout",
-    "soon": "Checkout arrives next sprint",
-    "soonText": "You'll choose pay on delivery or Sham Cash, and pick an address from your account."
+    "address": "Delivery address",
+    "noAddress": "You have no saved address.",
+    "addAddress": "Add address",
+    "manageAddresses": "Edit my addresses",
+    "payment": "Payment method",
+    "cod": "Pay on delivery",
+    "codText": "Pay the courier in cash when your order arrives.",
+    "shamcash": "Sham Cash",
+    "shamcashText": "Transfer the amount to our account and upload the receipt after ordering.",
+    "shamcashSoon": "Sham Cash isn't available right now.",
+    "notes": "Order notes (optional)",
+    "notesPh": "Like a good time for delivery...",
+    "summary": "Order summary",
+    "place": "Place order",
+    "placing": "Placing your order...",
+    "terms": "By placing the order you agree to the terms of sale and exchange policy.",
+    "emptyBag": "Your bag is empty.",
+    "err_not_signed_in": "Please sign in first.",
+    "err_address_not_found": "Choose a delivery address.",
+    "err_empty_bag": "Your bag is empty.",
+    "err_too_many_items": "Too many items in one order. Split it into two.",
+    "err_sold_out": "A size in your bag has sold out. Remove it and try again.",
+    "err_bad_size": "A size in your bag isn't available.",
+    "err_unavailable": "A product in your bag is no longer available.",
+    "err_promo_invalid": "The promo code is no longer valid. Remove it from the bag and try again.",
+    "err_generic": "We couldn't place the order: {message}",
+    "itemsLabel": "Items"
+  },
+  "order": {
+    "placedTitle": "Order placed! 🎉",
+    "placedText": "Your order number is {n}. We'll contact you to confirm delivery.",
+    "back": "My orders",
+    "date": "Order date",
+    "status": "Status",
+    "payment": "Payment",
+    "deliverTo": "Deliver to",
+    "items": "Items",
+    "totals": "Totals",
+    "payTitle": "Pay with Sham Cash",
+    "payText": "Transfer {amount} (≈ {syp}) to the Sham Cash account below, then upload a photo of the receipt.",
+    "account": "Account number",
+    "copy": "Copy",
+    "copied": "Copied ✓",
+    "uploadReceipt": "Upload receipt photo",
+    "uploading": "Uploading...",
+    "receiptSent": "We've received your receipt and are confirming the payment.",
+    "receiptFailed": "Couldn't upload the photo: {message}",
+    "cancelWarning": "If no receipt is uploaded within 24 hours, the order is cancelled automatically.",
+    "steps": {
+      "new": "Received",
+      "confirmed": "Confirmed",
+      "preparing": "Preparing",
+      "shipped": "Shipped",
+      "delivered": "Delivered"
+    },
+    "cancelled": "This order was cancelled.",
+    "notFound": "We couldn't find this order.",
+    "notes": "Notes"
   }
 }

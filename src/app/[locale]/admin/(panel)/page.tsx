@@ -9,11 +9,14 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
   const t = await getTranslations("admin.dashboard");
   const supabase = await serverClient();
   const staff = await currentStaff();
-  const [{ data: products }, { count: rackCount }, { data: settings }] = await Promise.all([
+  const [{ data: products }, { count: rackCount }, { data: settings }, { count: newOrders }, { count: awaiting }] = await Promise.all([
     supabase.from("products").select("is_active, old_price, is_flash, sold_out"),
     supabase.from("rack_pieces").select("id", { count: "exact", head: true }).eq("is_active", true),
     supabase.from("settings").select("syp_per_usd").eq("id", 1).maybeSingle(),
+    supabase.from("orders").select("id", { count: "exact", head: true }).eq("status", "new"),
+    supabase.from("orders").select("id", { count: "exact", head: true }).eq("payment_status", "awaiting_confirmation"),
   ]);
+  const to = await getTranslations("admin.orders");
   const rows = products ?? [];
   const stats = [
     { label: t("products"), value: rows.filter((p) => p.is_active).length },
@@ -29,7 +32,17 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
       <h1 className="text-2xl font-black">
         {t("hello")} <span className="font-normal text-muted" dir="ltr">{staff?.user.email?.split("@")[0]}</span>
       </h1>
-      <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className="mt-6 grid grid-cols-2 gap-3">
+        <Link href="/admin/orders?f=new" className="border-2 border-fg bg-bg p-4">
+          <p className="font-latin text-3xl font-extrabold tabular-nums">{newOrders ?? 0}</p>
+          <p className="text-sm font-semibold">{to("newOrders")}</p>
+        </Link>
+        <Link href="/admin/orders?f=awaiting" className={`border-2 bg-bg p-4 ${awaiting ? "border-sale text-sale" : "border-line"}`}>
+          <p className="font-latin text-3xl font-extrabold tabular-nums">{awaiting ?? 0}</p>
+          <p className="text-sm font-semibold">{to("awaiting")}</p>
+        </Link>
+      </div>
+      <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
         {stats.map((s) => (
           <li key={s.label} className="border border-line bg-bg p-4">
             <p className="font-latin text-3xl font-extrabold tabular-nums">{s.value}</p>

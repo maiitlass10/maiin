@@ -55,7 +55,7 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [x] Owner: ran `supabase/sprint4.sql`, turned off "Confirm email" until a mail service is set up
 - [x] Tested sign-up, profile, bag sync and promo codes against the live database
 
-## 🟡 Sprint 5 · Checkout and orders · الدفع والطلبات
+## ✅ Sprint 5 · Checkout and orders · الدفع والطلبات
 - [x] Checkout: choose a saved address (or add one and come back), cash on delivery or Sham Cash, notes, order summary
 - [x] `place_order` database function: prices, sold-out sizes, promo code (and its usage count) and shipping are computed in the database, never trusted from the browser; the saved bag is cleared
 - [x] Order page for the customer with a five-step status bar; Sham Cash orders show the account number, amount in USD and SYP, and a receipt upload (private storage)
@@ -63,8 +63,8 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [x] Admin orders: filters (new, awaiting payment, each status), search by number, name or phone, order detail with items, customer contact (call, WhatsApp), receipt photo, confirm payment, change status, cancel
 - [x] Dashboard shows new orders and receipts awaiting confirmation
 - [x] Unpaid Sham Cash orders are cancelled after 24 hours (hourly job, and whenever staff open the orders page)
-- [ ] Owner: run `supabase/sprint5.sql`, add the Sham Cash account number in Settings
-- [ ] Test a full order with each payment method
+- [x] Owner: ran `supabase/sprint5.sql`, added the Sham Cash account number in Settings
+- [x] Tested order 10001 (cash on delivery, status changes) and order 10002 (Sham Cash, receipt upload, payment confirmed)
 
 ## Sprint 6 · Launch · الإطلاق
 - Owner: Vercel account and domain

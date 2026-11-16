@@ -325,7 +325,7 @@
       "freeFrom": "Free shipping from ($)",
       "fee": "Shipping fee ($)",
       "shamCash": "Sham Cash account number",
-      "shamCashHint": "Shown to customers at checkout (Sprint 5)."
+      "shamCashHint": "Shown to customers on their order page when they pay with Sham Cash."
     },
     "promos": {
       "title": "Promo codes",

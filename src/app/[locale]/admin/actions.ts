@@ -191,3 +191,56 @@ export async function signOut() {
   const supabase = await serverClient();
   await supabase.auth.signOut();
 }
+
+export type PromoInput = {
+  original?: string;
+  code: string;
+  kind: "percent" | "fixed";
+  value: number | string;
+  min_subtotal: number | string;
+  starts_at?: string;
+  ends_at?: string;
+  max_uses?: number | string;
+  is_active: boolean;
+};
+
+export async function savePromo(input: PromoInput): Promise<ActionResult> {
+  try {
+    const supabase = await guard();
+    const code = clean(input.code, 30).toUpperCase();
+    if (!/^[A-Z0-9_-]{3,30}$/.test(code)) return { ok: false, error: "invalid code" };
+    const value = money(input.value);
+    if (!value) return { ok: false, error: "invalid value" };
+    if (input.kind === "percent" && value > 90) return { ok: false, error: "percent must be 90 or less" };
+    const date = (v?: string) => (v ? new Date(v).toISOString() : null);
+    const maxUses = input.max_uses === "" || input.max_uses == null ? null : Math.max(1, Math.round(Number(input.max_uses)));
+    const row = {
+      code,
+      kind: input.kind === "fixed" ? "fixed" : "percent",
+      value,
+      min_subtotal: money(input.min_subtotal) ?? 0,
+      starts_at: date(input.starts_at),
+      ends_at: date(input.ends_at),
+      max_uses: maxUses,
+      is_active: !!input.is_active,
+    };
+    const { error } = input.original ? await supabase.from("promo_codes").update(row).eq("code", input.original) : await supabase.from("promo_codes").insert(row);
+    if (error) return { ok: false, error: error.message };
+    revalidatePath("/", "layout");
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: (e as Error).message };
+  }
+}
+
+export async function deletePromo(code: string): Promise<ActionResult> {
+  try {
+    const supabase = await guard();
+    const { error } = await supabase.from("promo_codes").delete().eq("code", code);
+    if (error) return { ok: false, error: error.message };
+    revalidatePath("/", "layout");
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: (e as Error).message };
+  }
+}

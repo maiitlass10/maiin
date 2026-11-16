@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { LayoutDashboard, Package, Settings, Shirt } from "lucide-react";
+import { LayoutDashboard, Package, Settings, Shirt, Tag } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 
 export function AdminNav() {
@@ -11,6 +11,7 @@ export function AdminNav() {
     { href: "/admin", label: t("dashboard"), icon: LayoutDashboard, exact: true },
     { href: "/admin/products", label: t("products"), icon: Package },
     { href: "/admin/rack", label: t("rack"), icon: Shirt },
+    { href: "/admin/promos", label: t("promos"), icon: Tag },
     { href: "/admin/settings", label: t("settings"), icon: Settings },
   ];
   return (

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { searchProducts } from "@/lib/catalog";
-import { products } from "@/data/products";
+import { getProducts } from "@/lib/data";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { ProductListing } from "@/components/listing/ProductListing";
 import { ProductCard } from "@/components/product/ProductCard";
@@ -24,7 +24,8 @@ export default async function SearchPage({ params, searchParams }: Props) {
   const q = String((await searchParams).q ?? "").trim().slice(0, 80);
   const t = await getTranslations("search");
   const tl = await getTranslations("listing");
-  const results = q ? searchProducts(q) : [];
+  const products = await getProducts();
+  const results = q ? searchProducts(products, q) : [];
   const popular = [...products].sort((a, b) => b.sold - a.sold).slice(0, 8);
 
   return (

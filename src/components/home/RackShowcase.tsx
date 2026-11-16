@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowLeft, ArrowRight, ArrowUpLeft, X } from "lucide-react";
-import { rackPieces } from "@/data/products";
+import type { RackPiece } from "@/data/products";
+import { useSettings } from "@/components/store/SettingsProvider";
 import { formatSyp, formatUsd } from "@/lib/format";
 import { useStore } from "@/components/store/StoreProvider";
 
@@ -14,7 +15,6 @@ import { useStore } from "@/components/store/StoreProvider";
  * from the stage width so the rail always passes through every hook.
  */
 
-const N = rackPieces.length;
 const pad = (n: number) => String(n).padStart(2, "0");
 
 type Geometry = { w: number; h: number; gap: number; depth: number; front: number };
@@ -24,7 +24,9 @@ function geometry(stageWidth: number, mobile: boolean): Geometry {
   return { w, h: Math.round(w * 1.32), gap: w * (mobile ? 0.16 : 0.2), depth: w * 0.62, front: stageWidth * (mobile ? 0.04 : 0.07) };
 }
 
-export function RackShowcase() {
+export function RackShowcase({ pieces: rackPieces }: { pieces: RackPiece[] }) {
+  const N = rackPieces.length;
+  const { sypPerUsd } = useSettings();
   const t = useTranslations("rack");
   const tp = useTranslations("product");
   const locale = useLocale() as "ar" | "en";
@@ -39,7 +41,7 @@ export function RackShowcase() {
   const stage = useRef<HTMLDivElement>(null);
   const lastWheel = useRef(0);
   const dragX = useRef<number | null>(null);
-  const piece = rackPieces[index];
+  const piece = rackPieces[Math.min(index, N - 1)];
 
   useLayoutEffect(() => {
     const el = stage.current;
@@ -51,11 +53,14 @@ export function RackShowcase() {
     return () => ro.disconnect();
   }, []);
 
-  const select = useCallback((i: number) => {
-    setIndex(Math.max(0, Math.min(N - 1, i)));
-    setSize(null);
-    setSizeError(false);
-  }, []);
+  const select = useCallback(
+    (i: number) => {
+      setIndex(Math.max(0, Math.min(N - 1, i)));
+      setSize(null);
+      setSizeError(false);
+    },
+    [N],
+  );
   const step = useCallback((d: number) => select(index + d), [index, select]);
 
   // Scroll over the stage moves along the rail; at either end the page scrolls normally.
@@ -75,7 +80,7 @@ export function RackShowcase() {
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
-  }, [index, details, dir, select]);
+  }, [index, details, dir, select, N]);
 
   const onKey = (e: React.KeyboardEvent) => {
     if (e.key === "Escape" && details) return setDetails(false);
@@ -113,6 +118,8 @@ export function RackShowcase() {
   const nextIcon = dir === 1 ? ArrowRight : ArrowLeft;
   const PrevIcon = prevIcon;
   const NextIcon = nextIcon;
+
+  if (!N) return null;
 
   return (
     <section aria-labelledby="rack-title" className="gutter bg-soft py-10 sm:py-14" onKeyDown={onKey}>
@@ -214,7 +221,7 @@ export function RackShowcase() {
             </dl>
             <p className="mt-5 flex flex-wrap items-baseline gap-2">
               <span className="font-latin text-2xl font-extrabold">{formatUsd(piece.price)}</span>
-              <span className="text-sm text-muted">≈ {formatSyp(piece.price, locale)}</span>
+              <span className="text-sm text-muted">≈ {formatSyp(piece.price, locale, sypPerUsd)}</span>
             </p>
             <fieldset className="mt-4">
               <legend className="mb-2 text-sm font-semibold">{tp("size")}</legend>
@@ -299,7 +306,7 @@ export function RackShowcase() {
                   </button>
                 </div>
                 <div className="relative aspect-[3/4] w-full overflow-hidden bg-bg md:aspect-auto md:flex-1">
-                  <Image key={piece.look} src={piece.look} alt={t("lookAlt", { name: piece.name[locale] })} fill sizes="(min-width:768px) 400px, 100vw" className="object-cover" />
+                  <Image key={piece.look ?? piece.cutout} src={piece.look || piece.cutout} alt={t("lookAlt", { name: piece.name[locale] })} fill sizes="(min-width:768px) 400px, 100vw" className={piece.look ? "object-cover" : "object-contain p-6"} />
                 </div>
               </div>
             </div>

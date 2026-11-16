@@ -1,5 +1,6 @@
 /**
- * Placeholder catalogue for Sprint 1. Photos are free-to-use Unsplash images.
+ * Fallback catalogue, used only when Supabase is not configured or unreachable.
+ * The live catalogue is in Supabase (see supabase/seed.sql). Originally the Sprint 1 Photos are free-to-use Unsplash images.
  * Moves to Supabase in Sprint 3, where staff manage products from the admin panel.
  */
 export type Localized = { ar: string; en: string };
@@ -30,7 +31,11 @@ export type Product = {
   categories: CategorySlug[];
   price: number;
   oldPrice?: number;
+  /** First photo; shown on cards. */
   image: string;
+  /** All photos, first one included. */
+  images?: string[];
+  description?: Localized;
   rating: number;
   reviews: number;
   sold: number;
@@ -44,6 +49,7 @@ export type Product = {
 
 export type RackPiece = {
   id: string;
+  productId?: string | null;
   name: Localized;
   description: Localized;
   material: Localized;
@@ -53,7 +59,7 @@ export type RackPiece = {
   /** Cut-out photo, transparent background, hanger at the top. */
   cutout: string;
   /** Styling photo shown in the details view. */
-  look: string;
+  look?: string | null;
 };
 
 const TOPS = ["XS", "S", "M", "L", "XL"];

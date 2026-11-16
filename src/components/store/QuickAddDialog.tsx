@@ -7,11 +7,13 @@ import { X } from "lucide-react";
 import { discountPercent, type Product } from "@/data/products";
 import { formatSyp, formatUsd } from "@/lib/format";
 import { useStore } from "./StoreProvider";
+import { useSettings } from "./SettingsProvider";
 
 export function QuickAddDialog({ product, onClose }: { product: Product | null; onClose: () => void }) {
   const t = useTranslations("product");
   const locale = useLocale() as "ar" | "en";
   const { addToBag, toast } = useStore();
+  const { sypPerUsd } = useSettings();
   const dialog = useRef<HTMLDialogElement>(null);
   const [size, setSize] = useState<string | null>(null);
   const [error, setError] = useState(false);
@@ -64,7 +66,7 @@ export function QuickAddDialog({ product, onClose }: { product: Product | null; 
             <span className={`font-latin text-2xl font-extrabold ${off ? "text-sale" : ""}`}>{formatUsd(product.price)}</span>
             {product.oldPrice && <s className="font-latin text-muted">{formatUsd(product.oldPrice)}</s>}
             {off > 0 && <span className="bg-sale px-1.5 text-xs font-bold text-white">-{off}%</span>}
-            <span className="w-full text-sm text-muted">≈ {formatSyp(product.price, locale)}</span>
+            <span className="w-full text-sm text-muted">≈ {formatSyp(product.price, locale, sypPerUsd)}</span>
           </div>
           <fieldset>
             <legend className="mb-2 flex w-full justify-between text-sm font-semibold">

@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 !.env.example
+!.env
+
+# copied from node_modules on install
+/public/ort/

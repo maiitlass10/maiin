@@ -3,24 +3,27 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Banknote, RefreshCw, Star, Truck } from "lucide-react";
 import { routing } from "@/i18n/routing";
-import { discountPercent, products } from "@/data/products";
-import { careFor, descriptionFor, getProduct, relatedProducts, sampleReviews, sizeChartFor } from "@/lib/catalog";
+import { discountPercent } from "@/data/products";
+import { careFor, descriptionFor, relatedProducts, sampleReviews, sizeChartFor } from "@/lib/catalog";
+import { getProduct, getProducts, getSettings } from "@/lib/data";
 import { formatSyp, formatUsd } from "@/lib/format";
-import { siteConfig } from "@/lib/config";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Gallery } from "@/components/product/Gallery";
 import { ProductPurchase } from "@/components/product/ProductPurchase";
 import { ProductCard } from "@/components/product/ProductCard";
 
+export const revalidate = 60;
+
 type Params = Promise<{ locale: string; id: string }>;
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const products = await getProducts();
   return routing.locales.flatMap((locale) => products.map((p) => ({ locale, id: p.id })));
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { locale, id } = await params;
-  const p = getProduct(id);
+  const p = await getProduct(id);
   if (!p) return {};
   const l = locale as "ar" | "en";
   return {
@@ -42,8 +45,9 @@ function Stars({ value, className = "size-4" }: { value: number; className?: str
 
 export default async function ProductPage({ params }: { params: Params }) {
   const { locale, id } = await params;
-  const p = getProduct(id);
+  const p = await getProduct(id);
   if (!p) notFound();
+  const [all, settings] = await Promise.all([getProducts(), getSettings()]);
   setRequestLocale(locale);
   const l = locale as "ar" | "en";
   const t = await getTranslations("pdp");
@@ -53,7 +57,7 @@ export default async function ProductPage({ params }: { params: Params }) {
   const off = discountPercent(p);
   const main = p.categories[0];
   const sub = p.categories[1];
-  const related = relatedProducts(p);
+  const related = relatedProducts(all, p);
   const dist = [5, 4, 3, 2, 1].map((s) => ({ s, pct: s === 5 ? 72 : s === 4 ? 18 : s === 3 ? 6 : s === 2 ? 3 : 1 }));
 
   return (
@@ -70,7 +74,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 
         <div className="grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
           <Gallery
-            images={[p.image]}
+            images={p.images ?? [p.image]}
             alt={p.name[l]}
             badge={
               off > 0 ? <span className="absolute start-0 top-3 bg-sale px-2 py-1 font-latin text-sm font-bold text-white">-{off}%</span> : p.isNew ? <span className="absolute start-0 top-3 bg-fg px-2 py-1 text-sm font-bold text-bg">{tp("new")}</span> : null
@@ -91,7 +95,7 @@ export default async function ProductPage({ params }: { params: Params }) {
               <span className={`font-latin text-3xl font-extrabold ${off ? "text-sale" : ""}`}>{formatUsd(p.price)}</span>
               {p.oldPrice && <s className="font-latin text-lg text-muted">{formatUsd(p.oldPrice)}</s>}
               {off > 0 && <span className="bg-sale px-2 py-0.5 text-sm font-bold text-white">{t("save", { amount: formatUsd(p.oldPrice! - p.price) })}</span>}
-              <span className="w-full text-sm text-muted">≈ {formatSyp(p.price, l)}</span>
+              <span className="w-full text-sm text-muted">≈ {formatSyp(p.price, l, settings.sypPerUsd)}</span>
             </div>
 
             <div className="mt-6">
@@ -102,7 +106,7 @@ export default async function ProductPage({ params }: { params: Params }) {
               <li className="flex gap-3">
                 <Truck className="size-5 shrink-0" strokeWidth={1.7} aria-hidden />
                 <span>
-                  <b>{t("deliveryTitle")}</b> · {t("deliveryText", { amount: formatUsd(siteConfig.freeShippingFrom), fee: formatUsd(siteConfig.shippingFee) })}
+                  <b>{t("deliveryTitle")}</b> · {t("deliveryText", { amount: formatUsd(settings.freeShippingFrom), fee: formatUsd(settings.shippingFee) })}
                 </span>
               </li>
               <li className="flex gap-3">

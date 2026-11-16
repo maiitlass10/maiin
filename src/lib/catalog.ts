@@ -1,4 +1,4 @@
-import { COLORS, products, type ColorKey, type Localized, type Product } from "@/data/products";
+import { COLORS, type ColorKey, type Localized, type Product } from "@/data/products";
 
 export const listingSlugs = ["new", "sale", "women", "men", "kids", "dresses", "tops", "outerwear", "bottoms", "shoes", "bags"] as const;
 export type ListingSlug = (typeof listingSlugs)[number];
@@ -7,18 +7,14 @@ export function isListingSlug(s: string): s is ListingSlug {
   return (listingSlugs as readonly string[]).includes(s);
 }
 
-export function productsFor(slug: ListingSlug): Product[] {
+export function productsFor(products: Product[], slug: ListingSlug): Product[] {
   if (slug === "new") return products.filter((p) => p.isNew);
   if (slug === "sale") return products.filter((p) => p.oldPrice);
   return products.filter((p) => p.categories.includes(slug));
 }
 
-export function getProduct(id: string) {
-  return products.find((p) => p.id === id);
-}
-
 /** Same main category first, then anything sharing a category, best sellers first. */
-export function relatedProducts(p: Product, limit = 10): Product[] {
+export function relatedProducts(products: Product[], p: Product, limit = 10): Product[] {
   const score = (o: Product) => o.categories.filter((c) => p.categories.includes(c)).length;
   return products
     .filter((o) => o.id !== p.id && score(o) > 0)
@@ -54,7 +50,7 @@ const categoryWords: Record<string, Localized> = {
   bags: { ar: "شنطة شنط حقيبة", en: "bag bags handbag" },
 };
 
-export function searchProducts(query: string): Product[] {
+export function searchProducts(products: Product[], query: string): Product[] {
   const terms = normalize(query).split(" ").filter(Boolean);
   if (!terms.length) return [];
   return products
@@ -100,6 +96,7 @@ const descriptions: Record<string, Localized> = {
 };
 
 export function descriptionFor(p: Product): Localized {
+  if (p.description?.ar || p.description?.en) return p.description;
   const key = p.categories.find((c) => descriptions[c]) ?? "tops";
   return descriptions[key];
 }

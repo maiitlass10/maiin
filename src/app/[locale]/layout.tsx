@@ -6,11 +6,8 @@ import "@fontsource-variable/cairo";
 import "@fontsource-variable/inter";
 import "../globals.css";
 import { localeDirection, routing } from "@/i18n/routing";
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { BottomNav } from "@/components/layout/BottomNav";
-import { StoreProvider } from "@/components/store/StoreProvider";
+import { SettingsProvider } from "@/components/store/SettingsProvider";
+import { getSettings } from "@/lib/data";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -44,18 +41,13 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const settings = await getSettings();
 
   return (
     <html lang={locale} dir={localeDirection[locale]}>
-      <body className="flex min-h-dvh flex-col pb-[calc(56px+env(safe-area-inset-bottom))] md:pb-0">
+      <body className="min-h-dvh">
         <NextIntlClientProvider>
-          <StoreProvider>
-            <AnnouncementBar />
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <BottomNav />
-          </StoreProvider>
+          <SettingsProvider value={settings}>{children}</SettingsProvider>
         </NextIntlClientProvider>
       </body>
     </html>

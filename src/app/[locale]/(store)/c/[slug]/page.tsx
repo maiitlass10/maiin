@@ -4,8 +4,11 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { isListingSlug, listingSlugs, productsFor } from "@/lib/catalog";
+import { getProducts } from "@/lib/data";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { ProductListing } from "@/components/listing/ProductListing";
+
+export const revalidate = 60;
 
 type Params = Promise<{ locale: string; slug: string }>;
 
@@ -27,7 +30,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
   setRequestLocale(locale);
   const t = await getTranslations("categories");
   const tl = await getTranslations("listing");
-  const items = productsFor(slug);
+  const items = productsFor(await getProducts(), slug);
 
   return (
     <div className="gutter">

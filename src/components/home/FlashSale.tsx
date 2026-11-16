@@ -1,12 +1,14 @@
 import { useTranslations } from "next-intl";
 import { Zap } from "lucide-react";
-import { flashProducts } from "@/data/products";
+import type { Product } from "@/data/products";
 import { ProductCard } from "@/components/product/ProductCard";
 import { Countdown } from "./Countdown";
 import { SectionHeading } from "./SectionHeading";
 
-export function FlashSale() {
+export function FlashSale({ products }: { products: Product[] }) {
   const t = useTranslations("home");
+  const flashProducts = products.filter((p) => p.flash);
+  if (!flashProducts.length) return null;
   return (
     <section className="gutter py-8">
       <div className="mx-auto max-w-7xl">

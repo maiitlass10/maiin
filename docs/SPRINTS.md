@@ -36,11 +36,13 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [x] Search that tolerates Arabic spelling variants (أ/ا, ة/ه, ى/ي, diacritics), with best sellers when nothing matches
 - [x] Product cards link to product pages; search box keeps the current query
 
-## Sprint 3 · Database and admin · قاعدة البيانات ولوحة التحكم
-- Owner: free Supabase account
-- Products, categories, stock, sizes and offers in the database
-- Admin panel with staff login, product editor with photo upload and automatic background removal
-- Exchange rate and shipping settings editable by staff
+## ✅ Sprint 3 · Database and admin · قاعدة البيانات ولوحة التحكم
+- [x] Owner: Supabase project, schema and starter catalogue loaded, owner account on the staff list
+- [x] Schema with row level security: shoppers read active products and settings, only staff can write (`supabase/schema.sql`)
+- [x] Shop reads products, rack pieces and settings from Supabase; pages refresh within a minute, instantly after an admin save; falls back to the bundled catalogue if the database is unreachable
+- [x] Admin panel at `/ar/admin`: staff login, dashboard, products list with search and show/hide, product editor (names, descriptions, prices, categories, colours, sizes and sold-out sizes, flags, order, photo upload with automatic resize to WebP, delete)
+- [x] Rack manager with automatic background removal in the browser (U²-Netp model, served from this site) and a styling photo
+- [x] Settings: dollar rate in Syrian pounds, free-shipping threshold, shipping fee, Sham Cash account
 
 ## Sprint 4 · Bag and accounts · السلة والحسابات
 - Bag, wishlist, promo codes

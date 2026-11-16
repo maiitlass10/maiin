@@ -1,6 +1,5 @@
-import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
-import { use } from "react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getProducts, getRackPieces } from "@/lib/data";
 import { Banknote, RefreshCw, Truck } from "lucide-react";
 import { HeroCarousel } from "@/components/home/HeroCarousel";
 import { CategoryCircles } from "@/components/home/CategoryCircles";
@@ -8,10 +7,13 @@ import { FlashSale } from "@/components/home/FlashSale";
 import { RackShowcase } from "@/components/home/RackShowcase";
 import { RecommendedGrid } from "@/components/home/RecommendedGrid";
 
-export default function HomePage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = use(params);
+export const revalidate = 60;
+
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   setRequestLocale(locale);
-  const tt = useTranslations("trust");
+  const tt = await getTranslations("trust");
+  const [products, rack] = await Promise.all([getProducts(), getRackPieces()]);
 
   const trust = [
     { icon: Truck, title: tt("delivery"), text: tt("deliveryText") },
@@ -36,9 +38,9 @@ export default function HomePage({ params }: { params: Promise<{ locale: string 
         </ul>
       </section>
       <CategoryCircles />
-      <FlashSale />
-      <RackShowcase />
-      <RecommendedGrid />
+      <FlashSale products={products} />
+      <RackShowcase pieces={rack} />
+      <RecommendedGrid products={products} />
     </>
   );
 }

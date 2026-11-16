@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { products } from "@/data/products";
+import type { Product } from "@/data/products";
 import { ProductCard } from "@/components/product/ProductCard";
 
 const tabs = ["all", "women", "men", "kids"] as const;
 const PAGE = 10;
 
-export function RecommendedGrid() {
+export function RecommendedGrid({ products }: { products: Product[] }) {
   const t = useTranslations();
   const [tab, setTab] = useState<(typeof tabs)[number]>("all");
   const [shown, setShown] = useState(PAGE);

@@ -44,7 +44,7 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [x] Rack manager with automatic background removal in the browser (U²-Netp model, served from this site) and a styling photo
 - [x] Settings: dollar rate in Syrian pounds, free-shipping threshold, shipping fee, Sham Cash account
 
-## 🟡 Sprint 4 · Bag and accounts · السلة والحسابات
+## ✅ Sprint 4 · Bag and accounts · السلة والحسابات
 - [x] Bag page: quantities, remove, promo code, free-shipping bar, totals in USD and SYP
 - [x] Wishlist page
 - [x] Customer accounts with email and password, password reset
@@ -52,8 +52,8 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [x] "My orders" page (fills up in Sprint 5)
 - [x] Bag and wishlist saved to the account and merged across devices
 - [x] Promo codes in the admin panel (percent or fixed, minimum order, dates, usage limit)
-- [ ] Owner: run `supabase/sprint4.sql`, turn off "Confirm email" until a mail service is set up
-- [ ] Test sign-up, addresses and promo codes against the live database
+- [x] Owner: ran `supabase/sprint4.sql`, turned off "Confirm email" until a mail service is set up
+- [x] Tested sign-up, profile, bag sync and promo codes against the live database
 
 ## Sprint 5 · Checkout and orders · الدفع والطلبات
 - Checkout with cash on delivery or Sham Cash (receipt upload)

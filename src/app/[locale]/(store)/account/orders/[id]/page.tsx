@@ -12,10 +12,11 @@ export default async function OrderPage({ params }: { params: Promise<{ locale: 
   setRequestLocale(locale);
   const ta = await getTranslations("account");
   const to = await getTranslations("orders");
+  const tor = await getTranslations("order");
   return (
     <div className="gutter">
       <div className="mx-auto max-w-4xl pb-12">
-        <Breadcrumbs items={[{ href: "/account", label: ta("title") }, { href: "/account/orders", label: to("title") }, { label: "#" }]} />
+        <Breadcrumbs items={[{ href: "/account", label: ta("title") }, { href: "/account/orders", label: to("title") }, { label: tor("crumb") }]} />
         <RequireAccount>
           <Suspense>
             <OrderDetail id={id} />

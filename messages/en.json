@@ -565,6 +565,7 @@
     },
     "cancelled": "This order was cancelled.",
     "notFound": "We couldn't find this order.",
-    "notes": "Notes"
+    "notes": "Notes",
+    "crumb": "Order details"
   }
 }

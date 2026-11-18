@@ -8,7 +8,7 @@ export function SectionHeading({ title, href, linkLabel, children }: { title: st
       <div className="flex items-center gap-3">
         {children}
         {href && (
-          <Link href={href} className="flex items-center gap-0.5 text-sm font-semibold text-muted hover:text-fg">
+          <Link href={href} className="flex min-h-11 items-center gap-0.5 text-sm font-semibold text-muted hover:text-fg">
             {linkLabel}
             <ChevronLeft className="size-4 ltr:rotate-180" aria-hidden />
           </Link>

@@ -29,7 +29,7 @@ export function RecommendedGrid({ products }: { products: Product[] }) {
                 setTab(k);
                 setShown(PAGE);
               }}
-              className={`h-10 shrink-0 border px-4 text-sm font-semibold transition-colors ${tab === k ? "border-fg bg-fg text-bg" : "border-line hover:border-fg"}`}
+              className={`h-11 shrink-0 border px-4 text-sm font-semibold transition-colors ${tab === k ? "border-fg bg-fg text-bg" : "border-line hover:border-fg"}`}
             >
               {k === "all" ? t("home.tabAll") : t(`categories.${k}`)}
             </button>

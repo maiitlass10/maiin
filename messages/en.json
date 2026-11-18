@@ -13,7 +13,9 @@
     "menu": "Menu",
     "closeMenu": "Close menu",
     "switchLanguage": "عربي",
-    "switchLanguageLabel": "التبديل إلى العربية"
+    "switchLanguageLabel": "التبديل إلى العربية",
+    "skip": "Skip to content",
+    "announcementLabel": "Store announcements"
   },
   "categories": {
     "new": "New in",
@@ -34,7 +36,8 @@
     "payment": "Pay on delivery",
     "paymentText": "Or with Sham Cash",
     "exchange": "7-day exchanges",
-    "exchangeText": "If the size doesn't fit"
+    "exchangeText": "If the size doesn't fit",
+    "label": "Service highlights"
   },
   "footer": {
     "about": "MAIIN brings you the latest fashion at fair prices, delivered to every governorate.",
@@ -156,7 +159,8 @@
     "emptyText": "Try removing a filter or choosing another size or colour.",
     "showResults": "Show {count} products",
     "close": "Close",
-    "metaDescription": "Shop {name} at MAIIN at prices you'll love. Delivery across Syria, pay on delivery or with Sham Cash."
+    "metaDescription": "Shop {name} at MAIIN at prices you'll love. Delivery across Syria, pay on delivery or with Sham Cash.",
+    "products": "Products"
   },
   "search": {
     "title": "Search",
@@ -551,7 +555,8 @@
     "err_unavailable": "A product in your bag is no longer available.",
     "err_promo_invalid": "The promo code is no longer valid. Remove it from the bag and try again.",
     "err_generic": "We couldn't place the order: {message}",
-    "itemsLabel": "Items"
+    "itemsLabel": "Items",
+    "needAddress": "Add a delivery address to place the order."
   },
   "order": {
     "placedTitle": "Order placed! 🎉",

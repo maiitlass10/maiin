@@ -52,7 +52,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
           type="button"
           aria-label={t("quickAdd", { name })}
           onClick={() => openQuickAdd(product)}
-          className="absolute bottom-2 end-2 grid size-10 place-items-center rounded-full bg-bg shadow-md transition-transform hover:scale-105"
+          className="absolute bottom-1.5 end-1.5 grid size-11 place-items-center rounded-full bg-bg shadow-md transition-transform hover:scale-105"
         >
           <ShoppingBag className="size-[18px]" aria-hidden />
         </button>

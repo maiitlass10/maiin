@@ -104,7 +104,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 
           <div className="min-w-0">
             <h1 className="text-2xl font-black leading-snug sm:text-3xl">{p.name[l]}</h1>
-            <a href="#reviews" className="mt-2 inline-flex items-center gap-2 text-sm text-muted hover:text-fg">
+            <a href="#reviews" className="mt-1 inline-flex min-h-11 items-center gap-2 text-sm text-muted hover:text-fg">
               <Stars value={p.rating} />
               <span className="font-latin font-semibold text-fg">{p.rating.toFixed(1)}</span>
               <span>({t("reviewsCount", { count: p.reviews })})</span>

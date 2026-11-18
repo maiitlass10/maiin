@@ -80,7 +80,7 @@ export default async function InfoPage({ params }: { params: Promise<{ locale: s
                 {t("whatsappCta")}
               </a>
             )}
-            <dl className="grid gap-px border border-line bg-line sm:grid-cols-2">
+            <div className="grid gap-px border border-line bg-line sm:grid-cols-2">
               {[
                 { icon: MessageCircle, label: t("whatsapp"), value: s.whatsapp, href: s.whatsapp ? whatsappLink(s.whatsapp) : null, ltr: true },
                 { icon: Phone, label: t("phone"), value: s.phone, href: s.phone ? telLink(s.phone) : null, ltr: true },
@@ -90,15 +90,15 @@ export default async function InfoPage({ params }: { params: Promise<{ locale: s
               ].map(({ icon: Icon, label, value, href, ltr }) => (
                 <div key={label} className="flex gap-3 bg-bg p-4">
                   <Icon className="mt-0.5 size-5 shrink-0" strokeWidth={1.7} aria-hidden />
-                  <div className="min-w-0">
+                  <dl className="min-w-0">
                     <dt className="text-sm text-muted">{label}</dt>
                     <dd className="font-semibold break-words" dir={ltr && value ? "ltr" : undefined}>
                       {value ? href ? <a href={href} className="hover:underline">{value}</a> : value : <span className="font-normal text-muted">{tp("notSet")}</span>}
                     </dd>
-                  </div>
+                  </dl>
                 </div>
               ))}
-            </dl>
+            </div>
             {(s.instagram || s.facebook || s.tiktok) && (
               <p className="flex flex-wrap items-center gap-3 text-sm">
                 <span className="text-muted">{t("social")}:</span>

@@ -13,7 +13,9 @@
     "menu": "القائمة",
     "closeMenu": "إغلاق القائمة",
     "switchLanguage": "English",
-    "switchLanguageLabel": "Switch to English"
+    "switchLanguageLabel": "Switch to English",
+    "skip": "تخطّى للمحتوى",
+    "announcementLabel": "إعلانات المتجر"
   },
   "categories": {
     "new": "وصل حديثاً",
@@ -34,7 +36,8 @@
     "payment": "الدفع عند الاستلام",
     "paymentText": "أو عبر شام كاش",
     "exchange": "تبديل خلال ٧ أيام",
-    "exchangeText": "إذا المقاس ما ناسب"
+    "exchangeText": "إذا المقاس ما ناسب",
+    "label": "ميزات الخدمة"
   },
   "footer": {
     "about": "ماين متجر ملابس أونلاين بيجمعلك أحدث الموضة بأسعار معقولة، مع توصيل لكل المحافظات.",
@@ -156,7 +159,8 @@
     "emptyText": "جرّب تشيل فلتر أو تختار مقاس أو لون تاني.",
     "showResults": "اعرض {count} منتج",
     "close": "إغلاق",
-    "metaDescription": "تسوّق {name} من ماين بأسعار بتفرّح. توصيل لكل سوريا والدفع عند الاستلام أو شام كاش."
+    "metaDescription": "تسوّق {name} من ماين بأسعار بتفرّح. توصيل لكل سوريا والدفع عند الاستلام أو شام كاش.",
+    "products": "المنتجات"
   },
   "search": {
     "title": "البحث",
@@ -551,7 +555,8 @@
     "err_unavailable": "في منتج بسلتك ما عاد متوفر.",
     "err_promo_invalid": "كود الخصم ما عاد صالح. شيلو من السلة وجرّب.",
     "err_generic": "ما قدرنا نسجّل الطلب: {message}",
-    "itemsLabel": "القطع"
+    "itemsLabel": "القطع",
+    "needAddress": "أضف عنوان توصيل لتقدر تأكّد الطلب."
   },
   "order": {
     "placedTitle": "انسجّل طلبك! 🎉",

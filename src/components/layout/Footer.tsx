@@ -73,10 +73,10 @@ export async function Footer() {
         {columns.map((col) => (
           <div key={col.title}>
             <h2 className="mb-3 text-sm font-bold">{col.title}</h2>
-            <ul className="grid gap-2 text-sm text-bg/70">
+            <ul className="grid text-sm text-bg/70">
               {col.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="hover:text-bg hover:underline">
+                  <Link href={l.href} className="inline-flex min-h-11 items-center hover:text-bg hover:underline">
                     {l.label}
                   </Link>
                 </li>

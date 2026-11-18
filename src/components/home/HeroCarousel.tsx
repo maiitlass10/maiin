@@ -103,7 +103,7 @@ export function HeroCarousel() {
             aria-label={t("goTo", { n: i + 1 })}
             aria-current={i === index}
             onClick={() => setIndex(i)}
-            className="grid h-8 place-items-center px-1"
+            className="grid h-11 min-w-8 place-items-center px-1"
           >
             <span className={`block h-1.5 rounded-full transition-all ${i === index ? "w-7 bg-fg" : "w-1.5 bg-fg/30"}`} />
           </button>
@@ -112,9 +112,9 @@ export function HeroCarousel() {
           type="button"
           onClick={() => setPlaying((p) => !p)}
           aria-label={playing ? t("pause") : t("play")}
-          className="ms-2 grid size-8 place-items-center rounded-full bg-bg/80"
+          className="ms-1 grid size-11 place-items-center"
         >
-          {playing ? <Pause className="size-3.5" aria-hidden /> : <Play className="size-3.5" aria-hidden />}
+          <span className="grid size-8 place-items-center rounded-full bg-bg/80">{playing ? <Pause className="size-3.5" aria-hidden /> : <Play className="size-3.5" aria-hidden />}</span>
         </button>
       </div>
 

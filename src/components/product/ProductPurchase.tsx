@@ -55,7 +55,7 @@ export function ProductPurchase({ product, chart }: { product: Product; chart: C
               {tp("size")}: <span className="font-normal text-muted">{size ?? tp("chooseSize")}</span>
             </span>
             {chart && (
-              <button type="button" onClick={() => chartRef.current?.showModal()} className="flex h-9 items-center gap-1.5 text-sm font-normal underline underline-offset-2">
+              <button type="button" onClick={() => chartRef.current?.showModal()} className="flex h-11 items-center gap-1.5 text-sm font-normal underline underline-offset-2">
                 <Ruler className="size-4" aria-hidden />
                 {t("sizeGuide")}
               </button>

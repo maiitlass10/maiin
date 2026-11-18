@@ -162,7 +162,7 @@ export function ProductListing({ items }: { items: Product[] }) {
 
       <div className="min-w-0">
         <div className="sticky top-[118px] z-20 -mx-4 mb-4 flex items-center gap-2 border-b border-line bg-bg px-4 py-2 md:top-[152px] lg:static lg:mx-0 lg:border-0 lg:px-0 lg:py-0">
-          <button type="button" onClick={() => setPanel(true)} className="flex h-10 items-center gap-2 border border-line px-3 text-sm font-semibold lg:hidden">
+          <button type="button" onClick={() => setPanel(true)} className="flex h-11 items-center gap-2 border border-line px-3 text-sm font-semibold lg:hidden">
             <SlidersHorizontal className="size-4" aria-hidden />
             {t("filters")}
             {activeCount > 0 && <span className="grid size-5 place-items-center rounded-full bg-fg font-latin text-[11px] text-bg">{activeCount}</span>}
@@ -172,7 +172,7 @@ export function ProductListing({ items }: { items: Product[] }) {
           </p>
           <label className="ms-auto flex items-center gap-2 text-sm">
             <span className="hidden text-muted sm:inline">{t("sortBy")}</span>
-            <select value={sort} onChange={(e) => update((p) => (e.target.value === "recommended" ? p.delete("sort") : p.set("sort", e.target.value)))} className="h-10 border border-line bg-bg px-2 font-semibold">
+            <select aria-label={t("sortBy")} value={sort} onChange={(e) => update((p) => (e.target.value === "recommended" ? p.delete("sort") : p.set("sort", e.target.value)))} className="h-11 border border-line bg-bg px-2 font-semibold">
               {sorts.map((s) => (
                 <option key={s} value={s}>
                   {t(`sort_${s}`)}
@@ -207,6 +207,8 @@ export function ProductListing({ items }: { items: Product[] }) {
             )}
           </div>
         ) : (
+          <>
+          <h2 className="sr-only">{t("products")}</h2>
           <ul className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 xl:grid-cols-4">
             {filtered.slice(0, shown).map((p, i) => (
               <li key={p.id}>
@@ -214,6 +216,7 @@ export function ProductListing({ items }: { items: Product[] }) {
               </li>
             ))}
           </ul>
+          </>
         )}
         {shown < filtered.length && <div ref={sentinel} className="h-10" aria-hidden />}
       </div>

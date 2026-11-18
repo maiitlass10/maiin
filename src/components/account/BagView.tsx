@@ -76,12 +76,12 @@ export function BagView({ items }: { items: Record<string, BagItem> }) {
                 </div>
                 <div className="mt-auto flex items-end justify-between gap-3 pt-3">
                   {item && !out ? (
-                    <div className="flex h-10 items-center border border-line" role="group" aria-label={t("qty")}>
-                      <button type="button" onClick={() => setQty(id, size, qty - 1)} disabled={qty <= 1} aria-label="−" className="grid h-full w-10 place-items-center disabled:opacity-30">
+                    <div className="flex h-11 items-center border border-line" role="group" aria-label={t("qty")}>
+                      <button type="button" onClick={() => setQty(id, size, qty - 1)} disabled={qty <= 1} aria-label="−" className="grid h-full w-11 place-items-center disabled:opacity-30">
                         <Minus className="size-4" aria-hidden />
                       </button>
                       <output className="w-8 text-center font-latin font-bold">{qty}</output>
-                      <button type="button" onClick={() => setQty(id, size, qty + 1)} disabled={qty >= 9} aria-label="+" className="grid h-full w-10 place-items-center disabled:opacity-30">
+                      <button type="button" onClick={() => setQty(id, size, qty + 1)} disabled={qty >= 9} aria-label="+" className="grid h-full w-11 place-items-center disabled:opacity-30">
                         <Plus className="size-4" aria-hidden />
                       </button>
                     </div>

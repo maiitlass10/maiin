@@ -21,11 +21,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     { icon: RefreshCw, title: tt("exchange"), text: tt("exchangeText") },
   ];
 
+  const tm = await getTranslations("meta");
+
   return (
     <>
+      <h1 className="sr-only">{tm("title")}</h1>
       <HeroCarousel />
       <section className="gutter border-b border-line">
-        <ul className="no-scrollbar mx-auto flex max-w-7xl overflow-x-auto sm:grid sm:grid-cols-3">
+        <ul tabIndex={0} aria-label={tt("label")} className="no-scrollbar mx-auto flex max-w-7xl overflow-x-auto sm:grid sm:grid-cols-3">
           {trust.map(({ icon: Icon, title, text }) => (
             <li key={title} className="flex min-w-[78%] items-center gap-3 border-line py-4 sm:min-w-0 sm:px-5 sm:[&:not(:first-child)]:border-s">
               <Icon aria-hidden className="size-6 shrink-0" strokeWidth={1.6} />

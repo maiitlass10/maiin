@@ -174,6 +174,7 @@ export function CheckoutView({ items }: { items: Record<string, BagItem> }) {
           </div>
         </dl>
         {hasProblem && <p className="mt-3 text-sm text-sale">{t("err_unavailable")}</p>}
+        {addresses !== null && !addressId && !error && <p className="mt-3 text-sm font-semibold text-sale">{t("needAddress")}</p>}
         {error && (
           <p className="mt-3 text-sm font-semibold text-sale" role="alert">
             {error}

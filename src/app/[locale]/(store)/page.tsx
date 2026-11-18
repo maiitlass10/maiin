@@ -2,7 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import { getProducts, getRackPieces } from "@/lib/data";
 import { EditorialHero, Essentials, LookBento, ServiceStrip, ShopTiles, WardrobeBanner } from "@/components/home/Editorial";
 import { NewArrivals } from "@/components/home/NewArrivals";
-import { MaiinRail } from "@/components/home/MaiinRail";
+import { Rack3D } from "@/components/rack3d/Rack3D";
 import { WavesStatement } from "@/components/home/WavesStatement";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -32,9 +32,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <WavesStatement />
       </Reveal>
       {rack.length > 0 && (
-        <div className="border-y border-line bg-bg [&_header_h2]:font-display [&_header_h2]:text-[28px] sm:[&_header_h2]:text-[36px]">
-          <MaiinRail pieces={rack} />
-        </div>
+        <Reveal className="border-y border-line">
+          <Rack3D pieces={rack} />
+        </Reveal>
       )}
       <Reveal>
         <Essentials />

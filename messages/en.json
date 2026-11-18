@@ -814,5 +814,14 @@
       "text": "Every piece is chosen for its fabric, cut and comfort, to wear today and still love tomorrow. From Syria, for all of Syria.",
       "cta": "About us"
     }
+  },
+  "rack3d": {
+    "eyebrow": "MAIIN · The rack",
+    "heading": "Browse the rack like you're in store",
+    "caption": "Tap any piece to take it off the rack and turn it towards you, or drag to move along.",
+    "roledesc": "3D clothing rack",
+    "label": "{name}, piece {n} of {total}. Use the arrow keys to move.",
+    "pieces": "Pieces on the rack",
+    "hint": "Drag with the mouse or your finger, or use the arrow keys"
   }
 }

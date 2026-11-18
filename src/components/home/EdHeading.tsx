@@ -8,7 +8,7 @@ export function Arrow({ className = "size-4" }: { className?: string }) {
 /** Section title in the editorial serif, with an optional small kicker and a link at the end. */
 export function EdHeading({ kicker, title, href, linkLabel, center = false }: { kicker?: string; title: string; href?: string; linkLabel?: string; center?: boolean }) {
   return (
-    <div className={`mb-6 flex flex-wrap items-end gap-3 sm:mb-8 ${center ? "flex-col items-center text-center" : "justify-between"}`}>
+    <div data-reveal className={`mb-6 flex flex-wrap items-end gap-3 sm:mb-8 ${center ? "flex-col items-center text-center" : "justify-between"}`}>
       <div>
         {kicker && <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.2em] text-muted">{kicker}</p>}
         <h2 className="font-display text-[26px] font-medium leading-tight sm:text-[34px]">{title}</h2>

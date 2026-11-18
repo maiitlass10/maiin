@@ -56,6 +56,14 @@ html[lang="en"] {
 
 html {
   color-scheme: light;
+}
+
+/* The page behind an open modal dialog stays still. */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+html {
   -webkit-text-size-adjust: 100%;
 }
 
@@ -128,6 +136,20 @@ body {
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(18px);
+  }
+}
+
+/* Homepage hero intro: plain CSS so the first paint never flashes before scripts load. */
+.hero-in {
+  animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-photo {
+  animation: heroPhoto 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes heroPhoto {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
   }
 }

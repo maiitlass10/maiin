@@ -38,6 +38,7 @@ export function MobileMenu() {
         aria-hidden
       />
       <aside
+        data-lenis-prevent
         aria-label={t("header.menu")}
         aria-hidden={!open}
         inert={!open}

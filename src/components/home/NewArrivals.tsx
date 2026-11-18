@@ -35,7 +35,7 @@ export function NewArrivals({ products }: { products: Product[] }) {
         </div>
         <ul className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4">
           {list.map((p, i) => (
-            <li key={p.id}>
+            <li key={p.id} data-reveal>
               <ProductCard product={p} priority={i < 2} />
             </li>
           ))}

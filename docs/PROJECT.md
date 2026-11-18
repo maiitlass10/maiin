@@ -5,7 +5,7 @@ Online clothing store for a company in Syria, built sprint by sprint. See `docs/
 ## Decisions (agreed with the owner, don't change without asking)
 
 - **Brand:** MAIIN (ماين). Wordmark in wide-spaced serif capitals with the Arabic name under it.
-- **Editorial style (Sprint 6, replaced Style D):** calm-luxury fashion look. Warm ivory background (`--bg`), soft stone surfaces (`--soft`, `--sand`), near-black ink for text and actions, red (`--sale`) only for discounts and sale prices. Serif headings via the `font-display` utility (Playfair Display for Latin, El Messiri for Arabic), body in Cairo/Inter. Real lifestyle photos (`public/images/editorial/`), square corners, gradients only as photo scrims for text legibility. Wordmark: MAIIN in wide-spaced serif capitals with ماين under it. Light theme only for now.
+- **Editorial style (Sprint 6, replaced Style D):** calm-luxury fashion look. Warm ivory background (`--bg`), soft stone surfaces (`--soft`, `--sand`), near-black ink for text and actions, red (`--sale`) only for discounts and sale prices. Serif headings via the `font-display` utility (Playfair Display for Latin, El Messiri for Arabic), body in Cairo/Inter. Real lifestyle photos (`public/images/editorial/`), square corners. Gradients only as photo scrims, plus the animated React Bits GradientWaves background (owner's request) in the warm palette. Wordmark: MAIIN in wide-spaced serif capitals with ماين under it. Light theme only for now.
 - **Languages:** Arabic (default, RTL) and English, via `next-intl`. Every user-facing string lives in `messages/ar.json` and `messages/en.json`; never hard-code copy in components.
 - **Currency:** prices stored and shown in USD, with the Syrian pound price next to them using an admin-editable rate (`src/lib/config.ts` until Sprint 3).
 - **Payment:** cash on delivery and Sham Cash only (customer uploads the transfer receipt, staff confirm it in the admin panel). No card gateway.
@@ -20,6 +20,7 @@ Online clothing store for a company in Syria, built sprint by sprint. See `docs/
 - Fonts come from `@fontsource-variable/*` packages (Cairo and El Messiri for Arabic, Inter and Playfair Display for Latin), not `next/font/google`, so builds work without network access to Google.
 - Design tokens are CSS variables in `src/app/globals.css`, exposed to Tailwind as `bg`, `fg`, `muted`, `soft`, `sand`, `line`, `sale`, `ok`, `star`; the display serif is `--font-display`.
 - Touch targets at least 44px, visible focus, `prefers-reduced-motion` respected.
+- Motion: Lenis smooth scrolling (`src/components/motion/SmoothScroll.tsx`, wheel only, stops while a dialog or menu is open) drives GSAP's ticker; scroll animations go through `Reveal` (`data-reveal` children fade up, `data-parallax` images drift). Above-the-fold intros use CSS (`.hero-in`) so the first paint never flashes. Everything is off under reduced motion. React Bits components are copied into `src/components/ui/` (licence allows use inside this site).
 - Prices go through `formatUsd` / `formatSyp` in `src/lib/format.ts`.
 - Before merging, `npm run lint` and `npm run build` must pass (CI runs both).
 - Commits are authored by the owner (`maiitlass10`).

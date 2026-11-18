@@ -723,5 +723,14 @@
       "help": "Ordered with another account or have a question? Message us on WhatsApp with your order number.",
       "contactCta": "Contact us"
     }
+  },
+  "rail2": {
+    "eyebrow": "MAIIN · New collection",
+    "heading": "Flip through the rail like you would in store",
+    "caption": "Brush along the rail, slide a hanger, or tap a piece for a closer look.",
+    "front": "Front",
+    "back": "Back",
+    "close": "Close",
+    "show": "Show"
   }
 }

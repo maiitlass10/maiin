@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 /*
  * MAIIN design tokens, style D: white and black, commercial.
@@ -14,6 +15,16 @@
   --sale: #d7191f;
   --ok: #1a7f45;
   --star: #f5a623;
+
+  /* shadcn token names, mapped onto the MAIIN palette so components from
+     shadcn and 21st.dev pick up the same white-and-black style. */
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-muted-foreground: var(--muted);
+  --color-card: var(--bg);
+  --color-card-foreground: var(--fg);
+  --color-border: var(--line);
+  --color-ring: var(--fg);
 }
 
 @theme inline {
@@ -25,6 +36,13 @@
   --color-sale: var(--sale);
   --color-ok: var(--ok);
   --color-star: var(--star);
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-muted-foreground: var(--muted);
+  --color-card: var(--bg);
+  --color-card-foreground: var(--fg);
+  --color-border: var(--line);
+  --color-ring: var(--fg);
   --font-sans: "Cairo Variable", "Inter Variable", system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
   --font-latin: "Inter Variable", "Cairo Variable", system-ui, sans-serif;
 }

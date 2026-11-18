@@ -45,11 +45,11 @@ export async function Footer() {
   ];
 
   return (
-    <footer className="gutter mt-8 bg-fg text-bg">
+    <footer className="gutter border-t border-line bg-soft text-fg">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 py-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div className="col-span-2 lg:col-span-1">
-          <Logo inverted />
-          <p className="mt-4 max-w-xs text-sm text-bg/70">{t("about")}</p>
+          <Logo />
+          <p className="mt-4 max-w-xs text-sm leading-6 text-muted">{t("about")}</p>
           {social.length > 0 && (
           <ul className="mt-5 flex gap-2">
             {social.map((s) => (
@@ -59,7 +59,7 @@ export async function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.label}
-                  className="grid size-10 place-items-center border border-bg/25 transition-colors hover:border-bg"
+                  className="grid size-10 place-items-center border border-line bg-bg transition-colors hover:border-fg"
                 >
                   <svg viewBox="0 0 24 24" className="size-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                     <path d={ICONS[s.key]} />
@@ -72,11 +72,11 @@ export async function Footer() {
         </div>
         {columns.map((col) => (
           <div key={col.title}>
-            <h2 className="mb-3 text-sm font-bold">{col.title}</h2>
-            <ul className="grid text-sm text-bg/70">
+            <h2 className="mb-3 font-display text-base font-medium">{col.title}</h2>
+            <ul className="grid text-sm text-muted">
               {col.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="inline-flex min-h-11 items-center hover:text-bg hover:underline">
+                  <Link href={l.href} className="inline-flex min-h-11 items-center hover:text-fg hover:underline">
                     {l.label}
                   </Link>
                 </li>
@@ -85,12 +85,12 @@ export async function Footer() {
           </div>
         ))}
       </div>
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 border-t border-bg/15 py-5 text-[13px] text-bg/70">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 border-t border-line py-5 text-[13px] text-muted">
         <span>{t("rights", { year: new Date().getFullYear() })}</span>
         <div className="flex items-center gap-2">
           <span>{t("payWith")}:</span>
-          <span className="border border-bg/30 px-2 py-0.5 font-semibold text-bg">{t("cod")}</span>
-          <span className="border border-bg/30 px-2 py-0.5 font-semibold text-bg">{t("shamcash")}</span>
+          <span className="border border-line bg-bg px-2 py-0.5 font-medium text-fg">{t("cod")}</span>
+          <span className="border border-line bg-bg px-2 py-0.5 font-medium text-fg">{t("shamcash")}</span>
         </div>
       </div>
     </footer>

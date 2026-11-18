@@ -6,6 +6,7 @@ import { getProducts } from "@/lib/data";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { ProductListing } from "@/components/listing/ProductListing";
 import { ProductCard } from "@/components/product/ProductCard";
+import { SearchForm } from "@/components/layout/SearchForm";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,7 @@ export default async function SearchPage({ params, searchParams }: Props) {
       <div className="mx-auto max-w-7xl pb-10">
         <Breadcrumbs items={[{ href: "/", label: tl("home") }, { label: t("title") }]} />
         <h1 className="mb-5 text-2xl font-black sm:text-3xl">{q ? t("titleFor", { q }) : t("title")}</h1>
+        <SearchForm locale={locale} id="search-page" className="mb-6 hidden max-w-xl md:flex" />
         {results.length > 0 ? (
           <Suspense>
             <ProductListing items={results} />

@@ -17,7 +17,7 @@ export function SearchForm({ locale, className = "", id = "site-search" }: { loc
   const t = useTranslations("header");
   const placeholder = t("searchPlaceholder");
   return (
-    <form action={`/${locale}/search`} method="get" role="search" className={`flex h-12 items-center border-2 border-fg ${className}`}>
+    <form action={`/${locale}/search`} method="get" role="search" className={`flex h-12 items-center border border-line bg-bg focus-within:border-fg ${className}`}>
       <label htmlFor={id} className="sr-only">
         {t("search")}
       </label>

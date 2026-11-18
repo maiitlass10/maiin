@@ -15,7 +15,8 @@
     "switchLanguage": "عربي",
     "switchLanguageLabel": "التبديل إلى العربية",
     "skip": "Skip to content",
-    "announcementLabel": "Store announcements"
+    "announcementLabel": "Store announcements",
+    "mainNav": "Main navigation"
   },
   "categories": {
     "new": "New in",
@@ -732,5 +733,80 @@
     "back": "Back",
     "close": "Close",
     "show": "Show"
+  },
+  "ed": {
+    "hero": {
+      "kicker": "Autumn / Winter 2026",
+      "title1": "Quiet elegance,",
+      "title2": "made for you",
+      "text": "Carefully chosen pieces in comfortable fabrics and cuts that last the whole season. Delivery across Syria, pay on delivery.",
+      "cta": "Shop new in",
+      "cta2": "Women's collection",
+      "s1n": "200+",
+      "s1t": "new pieces a week",
+      "s2n": "14",
+      "s2t": "governorates served",
+      "s3n": "7 days",
+      "s3t": "free exchange",
+      "alt": "Model in an oversized white coat and black boots on a peach background"
+    },
+    "service": {
+      "label": "Our services",
+      "delivery": "Delivery across Syria",
+      "deliveryText": "Within 2 to 5 working days",
+      "payment": "Cash on delivery or Sham Cash",
+      "paymentText": "No cards, no hassle",
+      "exchange": "Exchange within 7 days",
+      "exchangeText": "If the size isn't right",
+      "support": "Help on WhatsApp",
+      "supportText": "We reply quickly"
+    },
+    "tiles": {
+      "kicker": "Shop by",
+      "title": "A look for everyone",
+      "women": "Women",
+      "womenSub": "Dresses, tops, coats",
+      "men": "Men",
+      "menSub": "Shirts, jackets, trousers",
+      "acc": "Accessories",
+      "accSub": "Bags and finishing touches"
+    },
+    "arrivals": {
+      "kicker": "Just in",
+      "title": "Latest in store",
+      "all": "View all new in"
+    },
+    "bento": {
+      "kicker": "Season's inspiration",
+      "title": "Editor's picks",
+      "knitKicker": "Warm without giving up style",
+      "knit": "Knitwear",
+      "shop": "Shop now",
+      "dresses": "Dresses",
+      "dressesSub": "For every occasion and every day",
+      "denim": "Denim",
+      "saleKicker": "Sale",
+      "sale": "Up to 30%"
+    },
+    "essentials": {
+      "kicker": "Essentials",
+      "title": "Wardrobe essentials",
+      "all": "View all",
+      "shirts": "Shirts & blouses",
+      "shirtsSub": "Light and polished",
+      "denim": "Denim",
+      "denimSub": "Straight and wide cuts",
+      "jackets": "Jackets",
+      "jacketsSub": "A layer for every look",
+      "basics": "T-shirts",
+      "basicsSub": "Soft cotton for every day"
+    },
+    "wardrobe": {
+      "kicker": "Refresh your wardrobe",
+      "title": "Fewer pieces, more looks",
+      "text": "Pick a few pieces that work together in many ways. Calm colours, good fabrics and prices that feel right.",
+      "cta": "Start shopping",
+      "alt": "A rail of beige and white blouses"
+    }
   }
 }

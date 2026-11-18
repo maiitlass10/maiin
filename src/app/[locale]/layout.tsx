@@ -4,6 +4,8 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import "@fontsource-variable/cairo";
 import "@fontsource-variable/inter";
+import "@fontsource-variable/playfair-display";
+import "@fontsource-variable/el-messiri";
 import "../globals.css";
 import { localeDirection, routing } from "@/i18n/routing";
 import { SettingsProvider } from "@/components/store/SettingsProvider";

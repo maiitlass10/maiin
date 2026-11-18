@@ -71,6 +71,8 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [x] Information pages: about, contact (WhatsApp, phone, email, hours, address), privacy, terms, shipping, exchanges, size guide, order tracking
 - [x] Footer social links from settings (hidden until filled in)
 - [x] SEO: sitemap.xml, robots.txt, canonical and hreflang links, share preview image, product structured data (price, availability)
+- [x] New editorial look: warm palette, serif headings, new header and footer, homepage rebuilt with lifestyle photos (hero, shop tiles, new arrivals with tabs, editor's picks, 3D rail, essentials, wardrobe banner)
+- [ ] Owner: replace placeholder product photos with real ones in the same calm style
 - [ ] Owner: run `supabase/sprint6.sql` and fill in contact details
 - [ ] Owner: Vercel account, import the repo, first deploy
 - [ ] Supabase: add the live URL to Auth redirect URLs

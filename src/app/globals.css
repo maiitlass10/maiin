@@ -2,17 +2,18 @@
 @import "tw-animate-css";
 
 /*
- * MAIIN design tokens, style D: white and black, commercial.
+ * MAIIN design tokens, editorial style: warm ivory, near-black ink, serif headings.
  * Black for actions and text, red only for sale prices and discounts.
  * Light only for now; a dark theme can be added later by redefining these tokens.
  */
 :root {
-  --bg: #ffffff;
-  --fg: #111111;
-  --muted: #666666;
-  --soft: #f5f5f5;
-  --line: #e5e5e5;
-  --sale: #d7191f;
+  --bg: #faf8f5;
+  --fg: #1c1a17;
+  --muted: #6b645c;
+  --soft: #f1ece6;
+  --line: #e4ddd4;
+  --sand: #e9dccd;
+  --sale: #b42318;
   --ok: #1a7f45;
   --star: #f5a623;
 
@@ -36,6 +37,7 @@
   --color-sale: var(--sale);
   --color-ok: var(--ok);
   --color-star: var(--star);
+  --color-sand: var(--sand);
   --color-background: var(--bg);
   --color-foreground: var(--fg);
   --color-muted-foreground: var(--muted);
@@ -45,6 +47,7 @@
   --color-ring: var(--fg);
   --font-sans: "Cairo Variable", "Inter Variable", system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
   --font-latin: "Inter Variable", "Cairo Variable", system-ui, sans-serif;
+  --font-display: "Playfair Display Variable", "El Messiri Variable", Georgia, serif;
 }
 
 html[lang="en"] {

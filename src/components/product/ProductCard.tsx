@@ -35,7 +35,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
         </Link>
         <div className="pointer-events-none absolute start-0 top-2 flex flex-col items-start gap-1">
           {off > 0 && <span className="bg-sale px-1.5 py-0.5 font-latin text-xs font-bold text-white">-{off}%</span>}
-          {product.isNew && <span className="bg-fg px-1.5 py-0.5 text-xs font-bold text-bg">{t("new")}</span>}
+          {product.isNew && <span className="bg-accent text-accent-fg px-1.5 py-0.5 text-xs font-bold">{t("new")}</span>}
         </div>
         <button
           type="button"

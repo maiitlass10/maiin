@@ -100,7 +100,7 @@ export function ProductPurchase({ product, chart }: { product: Product; chart: C
             <Plus className="size-4" aria-hidden />
           </button>
         </div>
-        <button type="button" onClick={add} className="h-12 flex-1 bg-fg font-bold text-bg transition-opacity hover:opacity-85">
+        <button type="button" onClick={add} className="h-12 flex-1 bg-accent text-accent-fg font-bold transition-colors hover:bg-[#ff7d36]">
           {tp("addToBag")}
         </button>
         <button

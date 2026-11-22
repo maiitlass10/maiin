@@ -180,7 +180,7 @@ export function CheckoutView({ items }: { items: Record<string, BagItem> }) {
             {error}
           </p>
         )}
-        <button type="button" onClick={submit} disabled={pending || !addressId} className="mt-5 flex h-12 w-full items-center justify-center gap-2 bg-fg font-bold text-bg transition-opacity hover:opacity-85 disabled:opacity-50">
+        <button type="button" onClick={submit} disabled={pending || !addressId} className="mt-5 flex h-12 w-full items-center justify-center gap-2 bg-accent text-accent-fg font-bold transition-colors hover:bg-[#ff7d36] disabled:opacity-50">
           <Check className="size-5" aria-hidden />
           {pending ? t("placing") : t("place")}
         </button>

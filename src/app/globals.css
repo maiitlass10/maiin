@@ -2,18 +2,22 @@
 @import "tw-animate-css";
 
 /*
- * MAIIN design tokens, editorial style: warm ivory, near-black ink, serif headings.
- * Black for actions and text, red only for sale prices and discounts.
- * Light only for now; a dark theme can be added later by redefining these tokens.
+ * MAIIN design tokens, 60-30-10: off-white (60%), deep navy (30%), orange (10%).
+ * Navy for text and dark bands, orange (--accent) only for the main action,
+ * "new" badges and the bag count. Sale prices and discounts use the deeper
+ * --sale orange so small text stays readable. Text on orange is navy
+ * (--accent-fg), never white: white on #FF6B1A is too faint to read.
  */
 :root {
-  --bg: #faf8f5;
-  --fg: #1c1a17;
-  --muted: #6b645c;
-  --soft: #f1ece6;
-  --line: #e4ddd4;
-  --sand: #e9dccd;
-  --sale: #b42318;
+  --bg: #f7f6f2;
+  --fg: #1e2447;
+  --muted: #5e6278;
+  --soft: #eeede8;
+  --line: #dfddd6;
+  --sand: #e7e5df;
+  --accent: #ff6b1a;
+  --accent-fg: #1e2447;
+  --sale: #c2410c;
   --ok: #1a7f45;
   --star: #f5a623;
 
@@ -38,6 +42,8 @@
   --color-ok: var(--ok);
   --color-star: var(--star);
   --color-sand: var(--sand);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
   --color-background: var(--bg);
   --color-foreground: var(--fg);
   --color-muted-foreground: var(--muted);
@@ -82,6 +88,20 @@ body {
 }
 
 /* Page gutter: 16px minimum, clears phone side bars. */
+/* Navy band (the 30%): footer, statement and wardrobe sections. The tokens are
+   redefined inside it, so bg-bg, text-fg, text-muted and border-line flip on
+   their own. */
+.band {
+  --bg: #1e2447;
+  --fg: #f7f6f2;
+  --muted: #b3b7cb;
+  --soft: #283061;
+  --sand: #283061;
+  --line: rgb(247 246 242 / 0.16);
+  background: var(--bg);
+  color: var(--fg);
+}
+
 .gutter {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));

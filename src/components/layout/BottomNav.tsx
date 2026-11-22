@@ -28,7 +28,7 @@ export function BottomNav() {
                 <span className="relative">
                   <Icon className="size-[22px]" strokeWidth={active ? 2.2 : 1.7} aria-hidden />
                   {!!count && (
-                    <span className="absolute -end-2.5 -top-1.5 grid min-w-4 place-items-center rounded-full bg-sale px-1 font-latin text-[10px] leading-4 text-white">{count}</span>
+                    <span className="absolute -end-2.5 -top-1.5 grid min-w-4 place-items-center rounded-full bg-accent px-1 font-latin text-[10px] font-bold leading-4 text-accent-fg">{count}</span>
                   )}
                 </span>
                 {label}

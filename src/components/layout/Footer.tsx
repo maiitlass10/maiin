@@ -45,7 +45,7 @@ export async function Footer() {
   ];
 
   return (
-    <footer className="gutter border-t border-line bg-soft text-fg">
+    <footer className="band gutter">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 py-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div className="col-span-2 lg:col-span-1">
           <Logo />

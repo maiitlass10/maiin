@@ -6,13 +6,13 @@ import { Arrow, EdHeading } from "./EdHeading";
 
 const IMG = "/images/editorial";
 
-const btnDark = "inline-flex h-12 items-center justify-center gap-2 bg-fg px-7 text-sm font-medium text-bg transition-opacity hover:opacity-85";
+const btnDark = "inline-flex h-12 items-center justify-center gap-2 bg-accent text-accent-fg px-7 text-sm font-semibold transition-colors hover:bg-[#ff7d36]";
 const btnLight = "inline-flex h-12 items-center justify-center gap-2 border border-fg/70 px-7 text-sm font-medium transition-colors hover:bg-fg hover:text-bg";
 
 export function EditorialHero() {
   const t = useTranslations("ed.hero");
   return (
-    <section className="relative bg-[#e3b89d]">
+    <section className="relative bg-soft">
       <div className="mx-auto flex max-w-7xl flex-col md:block md:min-h-[600px]">
         <div className="gutter order-2 flex flex-col justify-center py-10 md:min-h-[600px] md:w-1/2 md:py-16 md:ps-10 lg:ps-16">
           <p className="hero-in mb-4 text-xs font-medium uppercase tracking-[0.25em] text-fg/70">{t("kicker")}</p>
@@ -114,12 +114,12 @@ export function LookBento() {
               <h3 className="font-display text-xl font-medium">{t("denim")}</h3>
             </div>
           </Link>
-          <Link data-reveal href="/c/sale" className="group relative flex aspect-square flex-col justify-end overflow-hidden bg-fg p-6 text-bg md:aspect-auto">
+          <Link data-reveal href="/c/sale" className="band group relative flex aspect-square flex-col justify-end overflow-hidden p-6 md:aspect-auto">
             <Image src={`${IMG}/sale.webp`} alt="" fill sizes="(min-width:768px) 25vw, 100vw" className="object-cover object-[70%_center] opacity-60 transition-transform duration-700 group-hover:scale-[1.03]" />
             <div className="relative">
-              <p className="text-xs uppercase tracking-[0.2em] text-bg/80">{t("saleKicker")}</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-accent">{t("saleKicker")}</p>
               <p className="mt-1 font-display text-4xl font-medium">{t("sale")}</p>
-              <span className="mt-3 inline-flex items-center gap-2 border-b border-bg/60 pb-0.5 text-sm">
+              <span className="mt-3 inline-flex items-center gap-2 border-b border-accent pb-0.5 text-sm">
                 {t("shop")}
                 <Arrow />
               </span>
@@ -169,7 +169,7 @@ export function WardrobeBanner() {
   const t = useTranslations("ed.wardrobe");
   return (
     <section className="gutter py-12 sm:py-16">
-      <div className="relative mx-auto grid max-w-7xl overflow-hidden bg-sand md:grid-cols-2">
+      <div className="band relative mx-auto grid max-w-7xl overflow-hidden md:grid-cols-2">
         <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[440px]">
           <Image data-parallax src={`${IMG}/wardrobe.webp`} alt={t("alt")} fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover" />
         </div>

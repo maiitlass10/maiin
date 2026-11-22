@@ -6,8 +6,8 @@ import { Arrow, EdHeading } from "./EdHeading";
 
 const IMG = "/images/editorial";
 
-const btnDark = "inline-flex h-12 items-center justify-center gap-2 bg-accent text-accent-fg px-7 text-sm font-semibold transition-colors hover:bg-[#ff7d36]";
-const btnLight = "inline-flex h-12 items-center justify-center gap-2 border border-fg/70 px-7 text-sm font-medium transition-colors hover:bg-fg hover:text-bg";
+const btnDark = "inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent text-accent-fg px-7 text-sm font-semibold transition-colors hover:bg-[#ff7d36]";
+const btnLight = "inline-flex h-12 items-center justify-center gap-2 rounded-full border border-fg/70 px-7 text-sm font-medium transition-colors hover:bg-fg hover:text-bg";
 
 export function EditorialHero() {
   const t = useTranslations("ed.hero");
@@ -62,14 +62,14 @@ export function ShopTiles() {
         <ul className="grid gap-4 sm:grid-cols-3">
           {tiles.map((x) => (
             <li key={x.key} data-reveal>
-              <Link href={x.href} className="group relative block aspect-[4/3] overflow-hidden bg-soft sm:aspect-[3/4]">
+              <Link href={x.href} className="group relative block aspect-[4/3] overflow-hidden rounded-3xl bg-soft sm:aspect-[3/4]">
                 <Image src={`${IMG}/${x.img}.webp`} alt="" fill sizes="(min-width:640px) 33vw, 100vw" className="object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-[1.04]" />
-                <div className="absolute inset-x-3 bottom-3 flex items-center justify-between bg-bg/95 px-4 py-3">
+                <div className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-2xl bg-bg/95 px-4 py-3 shadow-sm">
                   <div>
                     <h3 className="font-display text-xl font-medium">{t(`${x.key}`)}</h3>
                     <p className="text-xs text-muted">{t(`${x.key}Sub`)}</p>
                   </div>
-                  <span className="grid size-10 place-items-center border border-line transition-colors group-hover:border-fg group-hover:bg-fg group-hover:text-bg">
+                  <span className="grid size-10 place-items-center rounded-full border border-line transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-accent-fg">
                     <Arrow />
                   </span>
                 </div>
@@ -89,7 +89,7 @@ export function LookBento() {
       <div className="mx-auto max-w-7xl">
         <EdHeading kicker={t("kicker")} title={t("title")} />
         <div className="grid gap-4 md:grid-cols-4 md:grid-rows-2 md:[height:640px]">
-          <Link data-reveal href="/c/tops" className="group relative block aspect-[4/5] overflow-hidden bg-soft md:col-span-2 md:row-span-2 md:aspect-auto">
+          <Link data-reveal href="/c/tops" className="group relative block aspect-[4/5] overflow-hidden rounded-3xl bg-soft md:col-span-2 md:row-span-2 md:aspect-auto">
             <Image src={`${IMG}/knit.webp`} alt="" fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" aria-hidden />
             <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
@@ -101,20 +101,20 @@ export function LookBento() {
               </span>
             </div>
           </Link>
-          <Link data-reveal href="/c/dresses" className="group relative block aspect-[5/4] overflow-hidden bg-soft md:col-span-2 md:aspect-auto">
+          <Link data-reveal href="/c/dresses" className="group relative block aspect-[5/4] overflow-hidden rounded-3xl bg-soft md:col-span-2 md:aspect-auto">
             <Image src={`${IMG}/dresses.webp`} alt="" fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
-            <div className="absolute bottom-4 start-4 bg-bg/95 px-4 py-3">
+            <div className="absolute bottom-4 start-4 rounded-2xl bg-bg/95 px-4 py-3 shadow-sm">
               <h3 className="font-display text-xl font-medium">{t("dresses")}</h3>
               <p className="text-xs text-muted">{t("dressesSub")}</p>
             </div>
           </Link>
-          <Link data-reveal href="/c/bottoms" className="group relative block aspect-square overflow-hidden bg-sand md:aspect-auto">
+          <Link data-reveal href="/c/bottoms" className="group relative block aspect-square overflow-hidden rounded-3xl bg-sand md:aspect-auto">
             <Image src={`${IMG}/cat-jeans.webp`} alt="" fill sizes="(min-width:768px) 25vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
-            <div className="absolute bottom-4 start-4 bg-bg/95 px-4 py-3">
+            <div className="absolute bottom-4 start-4 rounded-2xl bg-bg/95 px-4 py-3 shadow-sm">
               <h3 className="font-display text-xl font-medium">{t("denim")}</h3>
             </div>
           </Link>
-          <Link data-reveal href="/c/sale" className="band group relative flex aspect-square flex-col justify-end overflow-hidden p-6 md:aspect-auto">
+          <Link data-reveal href="/c/sale" className="band group relative flex aspect-square flex-col rounded-3xl justify-end overflow-hidden p-6 md:aspect-auto">
             <Image src={`${IMG}/sale.webp`} alt="" fill sizes="(min-width:768px) 25vw, 100vw" className="object-cover object-[70%_center] opacity-60 transition-transform duration-700 group-hover:scale-[1.03]" />
             <div className="relative">
               <p className="text-xs uppercase tracking-[0.2em] text-accent">{t("saleKicker")}</p>
@@ -147,9 +147,9 @@ export function Essentials() {
           {items.map((x, i) => (
             <li key={x.key} data-reveal className="w-[70%] shrink-0 snap-start sm:w-[42%] md:w-auto">
               <Link href={x.href} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden bg-sand">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-sand">
                   <Image src={`${IMG}/${x.img}.webp`} alt="" fill sizes="(min-width:768px) 25vw, 70vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
-                  <span className="absolute start-3 top-3 bg-bg px-2 py-0.5 font-latin text-[11px] font-medium tracking-wider">0{i + 1}</span>
+                  <span className="absolute start-3 top-3 rounded-full bg-bg px-2.5 py-0.5 font-latin text-[11px] font-medium tracking-wider">0{i + 1}</span>
                 </div>
                 <div className="flex items-center justify-between pt-3">
                   <h3 className="font-display text-lg font-medium">{t(x.key)}</h3>
@@ -169,7 +169,7 @@ export function WardrobeBanner() {
   const t = useTranslations("ed.wardrobe");
   return (
     <section className="gutter py-12 sm:py-16">
-      <div className="band relative mx-auto grid max-w-7xl overflow-hidden md:grid-cols-2">
+      <div className="band relative mx-auto grid max-w-7xl overflow-hidden rounded-3xl md:grid-cols-2">
         <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[440px]">
           <Image data-parallax src={`${IMG}/wardrobe.webp`} alt={t("alt")} fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover" />
         </div>

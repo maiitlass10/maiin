@@ -195,7 +195,7 @@ export function Rack3D({ pieces }: { pieces: RackPiece[] }) {
               </p>
             </fieldset>
             <div className="mt-1 flex flex-wrap gap-2">
-              <button type="button" onClick={add} className="h-12 flex-1 bg-accent text-accent-fg px-6 text-sm font-semibold transition-colors hover:bg-[#ff7d36]">
+              <button type="button" onClick={add} className="h-12 flex-1 rounded-full bg-accent text-accent-fg px-6 text-sm font-semibold transition-colors hover:bg-[#ff7d36]">
                 {tp("addToBag")}
               </button>
               {piece.productId && (

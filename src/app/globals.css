@@ -5,8 +5,9 @@
  * MAIIN design tokens, 60-30-10: off-white (60%), deep navy (30%), orange (10%).
  * Navy for text and dark bands, orange (--accent) only for the main action,
  * "new" badges and the bag count. Sale prices and discounts use the deeper
- * --sale orange so small text stays readable. Text on orange is navy
- * (--accent-fg), never white: white on #FF6B1A is too faint to read.
+ * --sale orange so small text stays readable. Text on orange is white and
+ * bold, as in the owner's reference. Buttons are pills, cards and photos have
+ * soft rounded corners.
  */
 :root {
   --bg: #f7f6f2;
@@ -16,7 +17,7 @@
   --line: #dfddd6;
   --sand: #e7e5df;
   --accent: #ff6b1a;
-  --accent-fg: #1e2447;
+  --accent-fg: #ffffff;
   --sale: #c2410c;
   --ok: #1a7f45;
   --star: #f5a623;

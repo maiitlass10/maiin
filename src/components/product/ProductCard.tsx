@@ -22,7 +22,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
 
   return (
     <article className="group relative min-w-0">
-      <div className="relative aspect-[3/4] overflow-hidden bg-soft">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-soft">
         <Link href={`/p/${product.id}`} aria-label={name} className="absolute inset-0">
           <Image
             src={product.image}
@@ -33,9 +33,9 @@ export function ProductCard({ product, priority = false }: { product: Product; p
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </Link>
-        <div className="pointer-events-none absolute start-0 top-2 flex flex-col items-start gap-1">
-          {off > 0 && <span className="bg-sale px-1.5 py-0.5 font-latin text-xs font-bold text-white">-{off}%</span>}
-          {product.isNew && <span className="bg-accent text-accent-fg px-1.5 py-0.5 text-xs font-bold">{t("new")}</span>}
+        <div className="pointer-events-none absolute start-2 top-2 flex flex-col items-start gap-1">
+          {off > 0 && <span className="rounded-full bg-sale px-2 py-0.5 font-latin text-xs font-bold text-white">-{off}%</span>}
+          {product.isNew && <span className="rounded-full bg-accent text-accent-fg px-2.5 py-0.5 text-xs font-bold">{t("new")}</span>}
         </div>
         <button
           type="button"

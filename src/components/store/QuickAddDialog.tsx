@@ -65,7 +65,7 @@ export function QuickAddDialog({ product, onClose }: { product: Product | null; 
           <div className="flex flex-wrap items-baseline gap-2">
             <span className={`font-latin text-2xl font-extrabold ${off ? "text-sale" : ""}`}>{formatUsd(product.price)}</span>
             {product.oldPrice && <s className="font-latin text-muted">{formatUsd(product.oldPrice)}</s>}
-            {off > 0 && <span className="bg-sale px-1.5 text-xs font-bold text-white">-{off}%</span>}
+            {off > 0 && <span className="rounded-full bg-sale px-2 text-xs font-bold text-white">-{off}%</span>}
             <span className="w-full text-sm text-muted">≈ {formatSyp(product.price, locale, sypPerUsd)}</span>
           </div>
           <fieldset>
@@ -95,7 +95,7 @@ export function QuickAddDialog({ product, onClose }: { product: Product | null; 
               {error ? t("sizeRequired") : ""}
             </p>
           </fieldset>
-          <button type="button" onClick={add} className="mt-auto h-12 bg-accent text-accent-fg font-bold transition-colors hover:bg-[#ff7d36]">
+          <button type="button" onClick={add} className="mt-auto h-12 rounded-full bg-accent text-accent-fg font-bold transition-colors hover:bg-[#ff7d36]">
             {t("addToBag")}
           </button>
         </div>

@@ -6,8 +6,8 @@ import { Arrow, EdHeading } from "./EdHeading";
 
 const IMG = "/images/editorial";
 
-const btnDark = "inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent text-accent-fg px-7 text-sm font-semibold transition-colors hover:bg-[#ff7d36]";
-const btnLight = "inline-flex h-12 items-center justify-center gap-2 rounded-full border border-fg/70 px-7 text-sm font-medium transition-colors hover:bg-fg hover:text-bg";
+const btnDark = "inline-flex h-12 items-center justify-center gap-2 btn-3d rounded-full bg-accent text-accent-fg px-7 text-sm font-semibold transition-colors hover:bg-[#ff7d36]";
+const btnLight = "btn-3d-ghost inline-flex h-12 items-center justify-center gap-2 rounded-full border border-fg/70 px-7 text-sm font-medium transition-colors hover:bg-fg hover:text-bg";
 
 /**
  * Hero: the model stands in front of a giant MAIIN wordmark on a navy stage
@@ -24,23 +24,24 @@ export function EditorialHero() {
     { icon: Headphones, k: "support" },
   ] as const;
   return (
-    <section className="band relative isolate overflow-hidden">
+    <section data-depth-root className="band relative isolate overflow-hidden">
       {/* Stage light: warm glow behind the model and a diagonal beam. */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(60%_55%_at_50%_58%,rgb(255_107_26/0.28),transparent_70%),linear-gradient(180deg,#1e2447_0%,#262d5a_55%,#1a1f3d_100%)]" />
-      <div aria-hidden className="absolute -top-1/4 end-[12%] -z-10 h-[150%] w-40 rotate-[24deg] bg-gradient-to-b from-white/10 via-white/[0.04] to-transparent blur-2xl" />
+      <div aria-hidden data-depth="-0.6" className="absolute -top-1/4 end-[12%] -z-10 h-[150%] w-40 rotate-[24deg] bg-gradient-to-b from-white/10 via-white/[0.04] to-transparent blur-2xl" />
 
       <div className="relative mx-auto flex min-h-[680px] max-w-7xl flex-col md:min-h-[720px]">
         {/* Giant wordmark, behind the model. */}
+        <div aria-hidden data-depth="0.35" className="pointer-events-none absolute inset-x-0 top-8 md:top-[16%]">
         <p
-          aria-hidden
           dir="ltr"
-          className="hero-in pointer-events-none absolute inset-x-0 top-8 select-none text-center font-display text-[25vw] font-medium leading-none tracking-[0.04em] text-fg md:top-[16%] md:text-[min(20vw,260px)]"
+          className="hero-in select-none text-center font-display text-[25vw] font-medium leading-none tracking-[0.04em] text-fg md:text-[min(20vw,260px)]"
         >
           MA<span className="text-transparent [-webkit-text-stroke:1.5px_var(--fg)]">II</span>N
         </p>
+        </div>
 
         {/* Model cut-out, in front of the wordmark. */}
-        <div className="relative mx-auto mt-[18vw] aspect-[652/1355] w-[62%] max-w-[300px] md:absolute md:inset-x-0 md:bottom-0 md:mt-0 md:h-[92%] md:w-auto md:max-w-none">
+        <div data-depth="-0.5" className="relative mx-auto mt-[18vw] aspect-[652/1355] w-[62%] max-w-[300px] md:absolute md:inset-x-0 md:bottom-0 md:mt-0 md:h-[92%] md:w-auto md:max-w-none">
           <Image
             src={`${IMG}/hero-model.webp`}
             alt={t("alt")}
@@ -105,7 +106,7 @@ export function ShopTiles() {
         <ul className="grid gap-4 sm:grid-cols-3">
           {tiles.map((x) => (
             <li key={x.key} data-reveal>
-              <Link href={x.href} className="group relative block aspect-[4/3] overflow-hidden rounded-3xl bg-soft sm:aspect-[3/4]">
+              <Link href={x.href} data-tilt className="group relative block aspect-[4/3] overflow-hidden rounded-3xl bg-soft sm:aspect-[3/4]">
                 <Image src={`${IMG}/${x.img}.webp`} alt="" fill sizes="(min-width:640px) 33vw, 100vw" className="object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-[1.04]" />
                 <div className="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-2xl bg-bg/95 px-4 py-3 shadow-sm">
                   <div>
@@ -132,7 +133,7 @@ export function LookBento() {
       <div className="mx-auto max-w-7xl">
         <EdHeading kicker={t("kicker")} title={t("title")} />
         <div className="grid gap-4 md:grid-cols-4 md:grid-rows-2 md:[height:640px]">
-          <Link data-reveal href="/c/tops" className="group relative block aspect-[4/5] overflow-hidden rounded-3xl bg-soft md:col-span-2 md:row-span-2 md:aspect-auto">
+          <Link data-reveal data-tilt="4" href="/c/tops" className="group relative block aspect-[4/5] overflow-hidden rounded-3xl bg-soft md:col-span-2 md:row-span-2 md:aspect-auto">
             <Image src={`${IMG}/knit.webp`} alt="" fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" aria-hidden />
             <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
@@ -144,20 +145,20 @@ export function LookBento() {
               </span>
             </div>
           </Link>
-          <Link data-reveal href="/c/dresses" className="group relative block aspect-[5/4] overflow-hidden rounded-3xl bg-soft md:col-span-2 md:aspect-auto">
+          <Link data-reveal data-tilt="5" href="/c/dresses" className="group relative block aspect-[5/4] overflow-hidden rounded-3xl bg-soft md:col-span-2 md:aspect-auto">
             <Image src={`${IMG}/dresses.webp`} alt="" fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
             <div className="absolute bottom-4 start-4 rounded-2xl bg-bg/95 px-4 py-3 shadow-sm">
               <h3 className="font-display text-xl font-medium">{t("dresses")}</h3>
               <p className="text-xs text-muted">{t("dressesSub")}</p>
             </div>
           </Link>
-          <Link data-reveal href="/c/bottoms" className="group relative block aspect-square overflow-hidden rounded-3xl bg-sand md:aspect-auto">
+          <Link data-reveal data-tilt href="/c/bottoms" className="group relative block aspect-square overflow-hidden rounded-3xl bg-sand md:aspect-auto">
             <Image src={`${IMG}/cat-jeans.webp`} alt="" fill sizes="(min-width:768px) 25vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
             <div className="absolute bottom-4 start-4 rounded-2xl bg-bg/95 px-4 py-3 shadow-sm">
               <h3 className="font-display text-xl font-medium">{t("denim")}</h3>
             </div>
           </Link>
-          <Link data-reveal href="/c/sale" className="band group relative flex aspect-square flex-col rounded-3xl justify-end overflow-hidden p-6 md:aspect-auto">
+          <Link data-reveal data-tilt href="/c/sale" className="band group relative flex aspect-square flex-col rounded-3xl justify-end overflow-hidden p-6 md:aspect-auto">
             <Image src={`${IMG}/sale.webp`} alt="" fill sizes="(min-width:768px) 25vw, 100vw" className="object-cover object-[70%_center] opacity-60 transition-transform duration-700 group-hover:scale-[1.03]" />
             <div className="relative">
               <p className="text-xs uppercase tracking-[0.2em] text-accent">{t("saleKicker")}</p>
@@ -190,7 +191,7 @@ export function Essentials() {
           {items.map((x, i) => (
             <li key={x.key} data-reveal className="w-[70%] shrink-0 snap-start sm:w-[42%] md:w-auto">
               <Link href={x.href} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-sand">
+                <div data-tilt className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-sand">
                   <Image src={`${IMG}/${x.img}.webp`} alt="" fill sizes="(min-width:768px) 25vw, 70vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                   <span className="absolute start-3 top-3 rounded-full bg-bg px-2.5 py-0.5 font-latin text-[11px] font-medium tracking-wider">0{i + 1}</span>
                 </div>

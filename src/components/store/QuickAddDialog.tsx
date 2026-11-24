@@ -95,7 +95,7 @@ export function QuickAddDialog({ product, onClose }: { product: Product | null; 
               {error ? t("sizeRequired") : ""}
             </p>
           </fieldset>
-          <button type="button" onClick={add} className="mt-auto h-12 rounded-full bg-accent text-accent-fg font-bold transition-colors hover:bg-[#ff7d36]">
+          <button type="button" onClick={add} className="mt-auto h-12 btn-3d rounded-full bg-accent text-accent-fg font-bold transition-colors hover:bg-[#ff7d36]">
             {t("addToBag")}
           </button>
         </div>

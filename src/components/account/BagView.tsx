@@ -167,7 +167,7 @@ export function BagView({ items }: { items: Record<string, BagItem> }) {
             </dd>
           </div>
         </dl>
-        <Link href={user ? "/checkout" : "/account?next=/checkout"} className="mt-5 flex h-12 items-center justify-center rounded-full bg-accent text-accent-fg font-bold transition-colors hover:bg-[#ff7d36]">
+        <Link href={user ? "/checkout" : "/account?next=/checkout"} className="mt-5 flex h-12 items-center justify-center btn-3d rounded-full bg-accent text-accent-fg font-bold transition-colors hover:bg-[#ff7d36]">
           {user ? t("checkout") : t("signInToCheckout")}
         </Link>
         <Link href="/" className="mt-2 flex h-11 items-center justify-center text-sm font-semibold underline underline-offset-2">

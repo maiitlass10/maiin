@@ -22,7 +22,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
 
   return (
     <article className="group relative min-w-0">
-      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-soft">
+      <div data-tilt="9" className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-soft">
         <Link href={`/p/${product.id}`} aria-label={name} className="absolute inset-0">
           <Image
             src={product.image}

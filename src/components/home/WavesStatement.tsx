@@ -33,7 +33,7 @@ export function WavesStatement() {
         <p className="mb-4 text-xs font-medium uppercase tracking-[0.25em] text-fg/75">{t("kicker")}</p>
         <h2 className="font-display text-[34px] font-medium leading-[1.2] sm:text-[52px]">{t("title")}</h2>
         <p className="mt-5 max-w-xl text-[15px] leading-7 text-fg/80">{t("text")}</p>
-        <Link href="/about" className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-accent text-accent-fg px-7 text-sm font-semibold transition-colors hover:bg-[#ff7d36]">
+        <Link href="/about" className="mt-8 inline-flex h-12 items-center gap-2 btn-3d rounded-full bg-accent text-accent-fg px-7 text-sm font-semibold transition-colors hover:bg-[#ff7d36]">
           {t("cta")}
           <Arrow />
         </Link>

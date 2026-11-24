@@ -174,3 +174,111 @@ body {
     transform: scale(1.06);
   }
 }
+
+/*
+ * Interactive 3D buttons: a raised edge under the button, it lifts on hover,
+ * sinks on press and a shine sweeps across. PointerFX adds the magnetic lean.
+ * .btn-3d is the orange action, .btn-3d-ghost the outlined one.
+ */
+.btn-3d,
+.btn-3d-ghost {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s,
+    color 0.2s;
+}
+.btn-3d {
+  box-shadow:
+    0 4px 0 0 #c2410c,
+    0 10px 22px -8px rgb(255 107 26 / 0.6);
+}
+.btn-3d-ghost {
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--fg) 30%, transparent);
+}
+.btn-3d::after,
+.btn-3d-ghost::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.btn-3d:hover,
+.btn-3d-ghost:hover {
+  transform: translateY(-3px);
+}
+.btn-3d:hover {
+  box-shadow:
+    0 7px 0 0 #c2410c,
+    0 18px 30px -10px rgb(255 107 26 / 0.65);
+}
+.btn-3d-ghost:hover {
+  box-shadow: 0 7px 0 0 color-mix(in srgb, var(--fg) 30%, transparent);
+}
+.btn-3d:hover::after,
+.btn-3d-ghost:hover::after {
+  transform: translateX(120%);
+}
+.btn-3d:active,
+.btn-3d-ghost:active {
+  transform: translateY(3px);
+  transition-duration: 0.06s;
+}
+.btn-3d:active {
+  box-shadow:
+    0 1px 0 0 #c2410c,
+    0 4px 10px -4px rgb(255 107 26 / 0.5);
+}
+.btn-3d-ghost:active {
+  box-shadow: 0 1px 0 0 color-mix(in srgb, var(--fg) 30%, transparent);
+}
+.btn-3d:disabled,
+.btn-3d:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* 3D tilt cards (PointerFX): glare follows the pointer. */
+[data-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+[data-tilt]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / 0.28), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+[data-tilt][data-tilting]::after {
+  opacity: 1;
+}
+[data-depth] {
+  transition: translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: translate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-3d:hover,
+  .btn-3d-ghost:hover,
+  .btn-3d:active,
+  .btn-3d-ghost:active {
+    transform: none;
+  }
+  .btn-3d::after,
+  .btn-3d-ghost::after {
+    display: none;
+  }
+}

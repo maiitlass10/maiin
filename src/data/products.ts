@@ -1,6 +1,6 @@
 /**
  * Fallback catalogue, used only when Supabase is not configured or unreachable.
- * The live catalogue is in Supabase (see supabase/seed.sql). Originally the Sprint 1 Photos are free-to-use Unsplash images.
+ * The live catalogue is in Supabase (see supabase/seed.sql). Photos are free-to-use Pexels placeholders (see docs/PHOTOS.md) until the real product photos arrive.
  * Moves to Supabase in Sprint 3, where staff manage products from the admin panel.
  */
 export type Localized = { ar: string; en: string };

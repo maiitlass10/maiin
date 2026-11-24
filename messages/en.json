@@ -736,19 +736,37 @@
   },
   "ed": {
     "hero": {
-      "kicker": "Autumn / Winter 2026",
-      "title1": "Quiet elegance,",
-      "title2": "made for you",
-      "text": "Carefully chosen pieces in comfortable fabrics and cuts that last the whole season. Delivery across Syria, pay on delivery.",
-      "cta": "Shop new in",
-      "cta2": "Women's collection",
-      "s1n": "200+",
-      "s1t": "new pieces a week",
-      "s2n": "14",
-      "s2t": "governorates served",
-      "s3n": "7 days",
-      "s3t": "free exchange",
-      "alt": "Model in an oversized white coat and black boots on a peach background"
+      "label": "MAIIN highlights",
+      "goTo": "Show slide {n}",
+      "pause": "Pause automatic slides",
+      "play": "Play automatic slides",
+      "w": {
+        "kicker": "Autumn / Winter 2026",
+        "title1": "Quiet elegance,",
+        "title2": "made for you",
+        "text": "Carefully chosen pieces in comfortable fabrics and cuts that last the whole season. Delivery across Syria, pay on delivery.",
+        "cta": "Shop new in",
+        "cta2": "Women's collection",
+        "alt": "Model in a brown cropped jumper and white jeans"
+      },
+      "m": {
+        "kicker": "Men's collection",
+        "title1": "Confident,",
+        "title2": "down to the detail",
+        "text": "Jackets, shirts and trousers in clean cuts, for a look that works from the office to the evening.",
+        "cta": "Shop men",
+        "cta2": "Jackets",
+        "alt": "Model in a black jacket and grey scarf with arms crossed"
+      },
+      "c": {
+        "kicker": "Coats of the season",
+        "title1": "Warm and elegant,",
+        "title2": "every day",
+        "text": "Long coats and trenches in calm colours that finish any outfit.",
+        "cta": "Shop coats",
+        "cta2": "All new in",
+        "alt": "Model in a long beige trench coat and black boots"
+      }
     },
     "service": {
       "label": "Our services",

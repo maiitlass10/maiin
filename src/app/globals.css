@@ -282,3 +282,13 @@ body {
     display: none;
   }
 }
+
+/* Hero slide progress bar. */
+@keyframes heroBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

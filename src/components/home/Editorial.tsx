@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { Banknote, Headphones, RefreshCw, Truck } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Arrow, EdHeading } from "./EdHeading";
+import { HeroSlides } from "./HeroSlides";
 
 const IMG = "/images/editorial";
 
@@ -10,12 +11,11 @@ const btnDark = "inline-flex h-12 items-center justify-center gap-2 btn-3d round
 const btnLight = "btn-3d-ghost inline-flex h-12 items-center justify-center gap-2 rounded-full border border-fg/70 px-7 text-sm font-medium transition-colors hover:bg-fg hover:text-bg";
 
 /**
- * Hero: the model stands in front of a giant MAIIN wordmark on a navy stage
+ * Hero: models (changing slides) stand in front of a giant MAIIN wordmark on a navy stage
  * with a soft orange glow; the service promises sit in a glass bar at the
  * bottom. The wordmark is decorative, the h1 is the line next to it.
  */
 export function EditorialHero() {
-  const t = useTranslations("ed.hero");
   const s = useTranslations("ed.service");
   const services = [
     { icon: Truck, k: "delivery" },
@@ -40,35 +40,8 @@ export function EditorialHero() {
         </p>
         </div>
 
-        {/* Model cut-out, in front of the wordmark. */}
-        <div data-depth="-0.5" className="relative mx-auto mt-[18vw] aspect-[652/1355] w-[62%] max-w-[300px] md:absolute md:inset-x-0 md:bottom-0 md:mt-0 md:h-[92%] md:w-auto md:max-w-none">
-          <Image
-            src={`${IMG}/hero-model.webp`}
-            alt={t("alt")}
-            fill
-            priority
-            sizes="(min-width:768px) 340px, 62vw"
-            className="hero-photo object-contain object-bottom drop-shadow-[0_30px_40px_rgba(0,0,0,.35)]"
-          />
-        </div>
-
-        {/* Copy: under the model on phones, at the side on wider screens. */}
-        <div className="gutter relative z-10 -mt-24 bg-gradient-to-t from-bg via-bg/95 to-transparent pb-6 pt-20 text-center md:absolute md:bottom-36 md:start-0 md:mt-0 md:w-[30%] md:bg-none md:p-0 md:ps-8 md:text-start lg:ps-12">
-          <p className="hero-in [animation-delay:.1s] mb-2 text-[11px] font-medium uppercase tracking-[0.25em] text-accent">{t("kicker")}</p>
-          <h1 className="hero-in [animation-delay:.15s] font-display text-[30px] font-medium leading-tight lg:text-[36px]">
-            {t("title1")} <span className="text-fg/75">{t("title2")}</span>
-          </h1>
-          <p className="hero-in [animation-delay:.2s] mx-auto mt-3 max-w-xs text-sm leading-6 text-muted md:mx-0">{t("text")}</p>
-          <div className="hero-in [animation-delay:.3s] mt-5 flex flex-wrap justify-center gap-3 md:justify-start">
-            <Link href="/c/new" className={btnDark}>
-              {t("cta")}
-              <Arrow />
-            </Link>
-            <Link href="/c/women" className={btnLight}>
-              {t("cta2")}
-            </Link>
-          </div>
-        </div>
+        {/* Changing part: model in front of the wordmark, copy and controls. */}
+        <HeroSlides btnDark={btnDark} btnLight={btnLight} />
 
         {/* Glass bar with the service promises. */}
         <ul

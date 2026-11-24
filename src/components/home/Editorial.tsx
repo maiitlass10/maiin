@@ -9,20 +9,56 @@ const IMG = "/images/editorial";
 const btnDark = "inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent text-accent-fg px-7 text-sm font-semibold transition-colors hover:bg-[#ff7d36]";
 const btnLight = "inline-flex h-12 items-center justify-center gap-2 rounded-full border border-fg/70 px-7 text-sm font-medium transition-colors hover:bg-fg hover:text-bg";
 
+/**
+ * Hero: the model stands in front of a giant MAIIN wordmark on a navy stage
+ * with a soft orange glow; the service promises sit in a glass bar at the
+ * bottom. The wordmark is decorative, the h1 is the line next to it.
+ */
 export function EditorialHero() {
   const t = useTranslations("ed.hero");
+  const s = useTranslations("ed.service");
+  const services = [
+    { icon: Truck, k: "delivery" },
+    { icon: Banknote, k: "payment" },
+    { icon: RefreshCw, k: "exchange" },
+    { icon: Headphones, k: "support" },
+  ] as const;
   return (
-    <section className="relative bg-soft">
-      <div className="mx-auto flex max-w-7xl flex-col md:block md:min-h-[600px]">
-        <div className="gutter order-2 flex flex-col justify-center py-10 md:min-h-[600px] md:w-1/2 md:py-16 md:ps-10 lg:ps-16">
-          <p className="hero-in mb-4 text-xs font-medium uppercase tracking-[0.25em] text-fg/70">{t("kicker")}</p>
-          <h1 className="hero-in [animation-delay:.1s] font-display text-[40px] font-medium leading-[1.15] sm:text-[54px] lg:text-[64px]">
-            {t("title1")}
-            <br />
-            <span className="font-normal text-fg/80 ltr:italic">{t("title2")}</span>
+    <section className="band relative isolate overflow-hidden">
+      {/* Stage light: warm glow behind the model and a diagonal beam. */}
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(60%_55%_at_50%_58%,rgb(255_107_26/0.28),transparent_70%),linear-gradient(180deg,#1e2447_0%,#262d5a_55%,#1a1f3d_100%)]" />
+      <div aria-hidden className="absolute -top-1/4 end-[12%] -z-10 h-[150%] w-40 rotate-[24deg] bg-gradient-to-b from-white/10 via-white/[0.04] to-transparent blur-2xl" />
+
+      <div className="relative mx-auto flex min-h-[680px] max-w-7xl flex-col md:min-h-[720px]">
+        {/* Giant wordmark, behind the model. */}
+        <p
+          aria-hidden
+          dir="ltr"
+          className="hero-in pointer-events-none absolute inset-x-0 top-8 select-none text-center font-display text-[25vw] font-medium leading-none tracking-[0.04em] text-fg md:top-[16%] md:text-[min(20vw,260px)]"
+        >
+          MA<span className="text-transparent [-webkit-text-stroke:1.5px_var(--fg)]">II</span>N
+        </p>
+
+        {/* Model cut-out, in front of the wordmark. */}
+        <div className="relative mx-auto mt-[18vw] aspect-[652/1355] w-[62%] max-w-[300px] md:absolute md:inset-x-0 md:bottom-0 md:mt-0 md:h-[92%] md:w-auto md:max-w-none">
+          <Image
+            src={`${IMG}/hero-model.webp`}
+            alt={t("alt")}
+            fill
+            priority
+            sizes="(min-width:768px) 340px, 62vw"
+            className="hero-photo object-contain object-bottom drop-shadow-[0_30px_40px_rgba(0,0,0,.35)]"
+          />
+        </div>
+
+        {/* Copy: under the model on phones, at the side on wider screens. */}
+        <div className="gutter relative z-10 -mt-24 bg-gradient-to-t from-bg via-bg/95 to-transparent pb-6 pt-20 text-center md:absolute md:bottom-36 md:start-0 md:mt-0 md:w-[30%] md:bg-none md:p-0 md:ps-8 md:text-start lg:ps-12">
+          <p className="hero-in [animation-delay:.1s] mb-2 text-[11px] font-medium uppercase tracking-[0.25em] text-accent">{t("kicker")}</p>
+          <h1 className="hero-in [animation-delay:.15s] font-display text-[30px] font-medium leading-tight lg:text-[36px]">
+            {t("title1")} <span className="text-fg/75">{t("title2")}</span>
           </h1>
-          <p className="hero-in [animation-delay:.2s] mt-5 max-w-md text-[15px] leading-7 text-fg/75">{t("text")}</p>
-          <div className="hero-in [animation-delay:.3s] mt-8 flex flex-wrap gap-3">
+          <p className="hero-in [animation-delay:.2s] mx-auto mt-3 max-w-xs text-sm leading-6 text-muted md:mx-0">{t("text")}</p>
+          <div className="hero-in [animation-delay:.3s] mt-5 flex flex-wrap justify-center gap-3 md:justify-start">
             <Link href="/c/new" className={btnDark}>
               {t("cta")}
               <Arrow />
@@ -31,18 +67,25 @@ export function EditorialHero() {
               {t("cta2")}
             </Link>
           </div>
-          <dl className="hero-in [animation-delay:.4s] mt-10 flex gap-8 border-t border-fg/15 pt-5 text-sm">
-            {(["s1", "s2", "s3"] as const).map((k) => (
-              <div key={k}>
-                <dt className="font-display text-2xl font-medium">{t(`${k}n`)}</dt>
-                <dd className="text-xs text-fg/70">{t(`${k}t`)}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
-        <div className="relative order-1 aspect-[4/5] md:absolute md:inset-y-0 md:end-0 md:aspect-auto md:w-1/2">
-          <Image src={`${IMG}/hero.webp`} alt={t("alt")} fill priority sizes="(min-width:768px) 50vw, 100vw" className="hero-photo object-cover object-top" />
-        </div>
+
+        {/* Glass bar with the service promises. */}
+        <ul
+          aria-label={s("label")}
+          className="hero-in [animation-delay:.45s] relative z-10 mx-4 mb-6 mt-2 grid grid-cols-2 overflow-hidden rounded-3xl border border-white/15 bg-white/[0.07] backdrop-blur-md md:absolute md:inset-x-8 md:bottom-8 md:mx-0 md:mb-0 md:grid-cols-4"
+        >
+          {services.map(({ icon: Icon, k }, i) => (
+            <li key={k} className={`flex items-center gap-3 px-4 py-4 ${i % 2 ? "border-s border-white/10" : ""} ${i > 1 ? "border-t border-white/10 md:border-t-0" : ""} ${i === 2 ? "md:border-s" : ""}`}>
+              <span className="grid size-9 shrink-0 place-items-center rounded-full bg-accent/15 text-accent">
+                <Icon className="size-[18px]" strokeWidth={1.6} aria-hidden />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[13px] font-semibold leading-5">{s(k)}</span>
+                <span className="block text-[11.5px] leading-4 text-muted">{s(`${k}Text`)}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -185,29 +228,6 @@ export function WardrobeBanner() {
           </div>
         </div>
       </div>
-    </section>
-  );
-}
-
-export function ServiceStrip() {
-  const t = useTranslations("ed.service");
-  const items = [
-    { icon: Truck, k: "delivery" },
-    { icon: Banknote, k: "payment" },
-    { icon: RefreshCw, k: "exchange" },
-    { icon: Headphones, k: "support" },
-  ] as const;
-  return (
-    <section className="gutter border-y border-line">
-      <ul aria-label={t("label")} className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
-        {items.map(({ icon: Icon, k }, i) => (
-          <li key={k} data-reveal className={`flex flex-col items-center gap-2 px-3 py-8 text-center ${i % 2 ? "border-s border-line" : ""} ${i > 1 ? "border-t border-line lg:border-t-0" : ""} ${i === 2 ? "lg:border-s" : ""}`}>
-            <Icon className="size-7" strokeWidth={1.2} aria-hidden />
-            <p className="font-display text-base font-medium">{t(k)}</p>
-            <p className="text-xs text-muted">{t(`${k}Text`)}</p>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

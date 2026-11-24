@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { getProducts, getRackPieces } from "@/lib/data";
-import { EditorialHero, Essentials, LookBento, ServiceStrip, ShopTiles, WardrobeBanner } from "@/components/home/Editorial";
+import { EditorialHero, Essentials, LookBento, ShopTiles, WardrobeBanner } from "@/components/home/Editorial";
 import { NewArrivals } from "@/components/home/NewArrivals";
 import { Rack3D } from "@/components/rack3d/Rack3D";
 import { WavesStatement } from "@/components/home/WavesStatement";
@@ -16,9 +16,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <EditorialHero />
-      <Reveal>
-        <ServiceStrip />
-      </Reveal>
       <Reveal>
         <ShopTiles />
       </Reveal>

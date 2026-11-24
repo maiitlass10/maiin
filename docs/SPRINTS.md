@@ -92,15 +92,17 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 
 Agreed with the owner after Sprint 6. Same rhythm: each sprint ends with a demo, the owner's feedback and fixes. Some items build on work that already exists; the note under each sprint says what is there today.
 
-## ⬜ Sprint 7 · Foundation · الأساس
-Today: Supabase schema with RLS, email login, `staff` table, `.env` with the public keys.
-- [ ] Fix what is already there: review open bugs, warnings and rough edges
-- [ ] Database audit: tables, indexes, constraints, unused columns, seed data
-- [ ] RLS review: every table, every role, tested with real queries
-- [ ] Auth: sign-up, login, reset, sessions, redirects, email confirmation
-- [ ] Roles: owner, staff, customer, with clear permissions per role
-- [ ] Environment variables: one documented list, separate values for local / preview / production, no secrets in the repo
-- [ ] Error handling: friendly error pages, server action errors, logging
+## 🟡 Sprint 7 · Foundation · الأساس
+Today: Supabase schema with RLS, email login, `staff` table, `.env` with the public keys. Full findings in `docs/AUDIT-sprint7.md`.
+- [x] Fix what is already there: language switch (AR ⇄ EN) works again, 404 page matches the new design
+- [ ] Database audit: schema reviewed (12 tables, all with RLS, orders priced in the database); live checks wait for the owner's read-only queries
+- [x] RLS review: every table and storage bucket reviewed, no gaps found (promo rate limit planned for Sprint 13)
+- [x] Auth reviewed: sign-up, login, reset and redirects work on previews; "Confirm email" back on with the email service (Sprint 9)
+- [ ] Roles: owner / editor permissions proposed in the audit, waiting for the owner's decision
+- [x] Environment variables: `docs/ENVIRONMENT.md`, `.env.local` and `.vercel` ignored, previews never indexed (`NEXT_PUBLIC_ALLOW_INDEXING`), security headers
+- [x] Error handling: friendly error page and last-resort global error page
+- [x] CI also runs on `sprint-*` branches
+- [ ] Owner: Vercel preview deployment (steps in `docs/ENVIRONMENT.md`)
 
 ## ⬜ Sprint 8 · E-commerce core · أساس المتجر
 Today: products have sizes, colours and sold-out sizes; orders have five statuses.

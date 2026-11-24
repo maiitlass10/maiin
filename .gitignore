@@ -24,6 +24,12 @@
 .DS_Store
 *.pem
 
+# local env files: secrets never go in the repo (.env holds only public values)
+.env*.local
+
+# vercel
+.vercel
+
 # debug
 npm-debug.log*
 yarn-debug.log*

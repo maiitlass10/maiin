@@ -63,6 +63,12 @@
     "text": "The link may be wrong, or the page was removed.",
     "back": "Back to home"
   },
+  "error": {
+    "title": "Something went wrong",
+    "text": "An error stopped this page from loading. Please try again, and contact us if it keeps happening.",
+    "retry": "Try again",
+    "home": "Back to home"
+  },
   "hero": {
     "label": "MAIIN offers",
     "goTo": "Show slide {n}",

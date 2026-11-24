@@ -27,6 +27,14 @@ Online clothing store for a company in Syria, built sprint by sprint. See `docs/
 - Before merging, `npm run lint` and `npm run build` must pass (CI runs both).
 - Commits are authored by the owner (`maiitlass10`).
 
+## Deployment and environment
+
+- Variables, the Vercel preview steps and the launch switch are in `docs/ENVIRONMENT.md`.
+- Search engines index the site only when `NEXT_PUBLIC_ALLOW_INDEXING=true` (set it in Vercel production at launch, nowhere else).
+- Security headers are set in `next.config.ts`; a full CSP comes with the Sprint 13 security audit.
+- Errors: `src/app/[locale]/error.tsx` (inside the shop layout) and `src/app/global-error.tsx` (when the root layout fails).
+- The language switch is a plain link with a full page load (the locale is the root layout segment); don't turn it back into `router.replace`.
+
 ## Supabase
 
 - `.env` holds the public URL and publishable key (safe to commit). Never commit the secret key or database password.

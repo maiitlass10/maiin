@@ -10,7 +10,7 @@ import "../globals.css";
 import { localeDirection, routing } from "@/i18n/routing";
 import { SettingsProvider } from "@/components/store/SettingsProvider";
 import { getSettings } from "@/lib/data";
-import { SITE_URL } from "@/lib/site";
+import { ALLOW_INDEXING, SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -28,6 +28,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     icons: { icon: "/icon.svg", apple: "/icon.svg" },
     openGraph: { type: "website", siteName: "MAIIN", locale: locale === "ar" ? "ar_SY" : "en_US", title: t("title"), description: t("description") },
     twitter: { card: "summary_large_image" },
+    // Not indexed until launch (see ALLOW_INDEXING).
+    robots: ALLOW_INDEXING ? undefined : { index: false, follow: false },
   };
 }
 

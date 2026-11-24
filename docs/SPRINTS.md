@@ -85,3 +85,71 @@ Each sprint ends with a demo link, the owner's feedback, and fixes before the ne
 - [ ] Check the live site opens from Syria without a VPN
 - [ ] Email service for account emails, then turn "Confirm email" back on
 - [ ] Domain (optional), performance check, replace placeholder products with real ones
+
+---
+
+# Phase 2 · المرحلة التانية
+
+Agreed with the owner after Sprint 6. Same rhythm: each sprint ends with a demo, the owner's feedback and fixes. Some items build on work that already exists; the note under each sprint says what is there today.
+
+## ⬜ Sprint 7 · Foundation · الأساس
+Today: Supabase schema with RLS, email login, `staff` table, `.env` with the public keys.
+- [ ] Fix what is already there: review open bugs, warnings and rough edges
+- [ ] Database audit: tables, indexes, constraints, unused columns, seed data
+- [ ] RLS review: every table, every role, tested with real queries
+- [ ] Auth: sign-up, login, reset, sessions, redirects, email confirmation
+- [ ] Roles: owner, staff, customer, with clear permissions per role
+- [ ] Environment variables: one documented list, separate values for local / preview / production, no secrets in the repo
+- [ ] Error handling: friendly error pages, server action errors, logging
+
+## ⬜ Sprint 8 · E-commerce core · أساس المتجر
+Today: products have sizes, colours and sold-out sizes; orders have five statuses.
+- [ ] Inventory: stock kept per product variant
+- [ ] Sizes and colours as real variants (size × colour)
+- [ ] SKU for every variant
+- [ ] Stock: decreases on order, comes back on cancel, no overselling
+- [ ] Order lifecycle: clear states and transitions, history of who changed what and when
+
+## ⬜ Sprint 9 · Customer experience · تجربة الزبون
+Today: order page with a status bar, wishlist, example reviews, product page.
+- [ ] Order tracking: timeline with dates, tracking page without logging in
+- [ ] Notifications: order placed, payment confirmed, shipped, delivered (email / WhatsApp)
+- [ ] Reviews: real reviews from customers who bought the item, with photos and moderation
+- [ ] Wishlist improvements: back-in-stock and price-drop alerts, share a list
+- [ ] Better product page: photo gallery, zoom, size advice, delivery estimate
+- [ ] Complete the Look: pieces that go with this item, add them together
+
+## ⬜ Sprint 10 · Admin · لوحة التحكم
+Today: dashboard with new orders and receipts awaiting confirmation.
+- [ ] Dashboard redesign
+- [ ] Revenue: per day / week / month, USD and SYP
+- [ ] Orders analytics: counts, average order, cancellations, payment method split
+- [ ] Product analytics: best sellers, most viewed, most wished
+- [ ] Inventory alerts: low stock and sold-out variants
+- [ ] Customer analytics: new vs returning, top governorates, top customers
+
+## ⬜ Sprint 11 · Premium UX · تجربة فخمة
+Today: new homepage, Arabic-tolerant search, filters in the URL, motion.
+- [ ] Homepage redesign (refine what we have)
+- [ ] Mobile optimisation: every page checked on small phones
+- [ ] Search: suggestions while typing, recent searches, typo tolerance
+- [ ] Filters: faster, clearer on mobile
+- [ ] Loading, empty and error states on every page
+- [ ] Light, purposeful animations (review what we have, keep only what helps)
+
+## ⬜ Sprint 12 · AI · الذكاء الاصطناعي
+- [ ] AI fashion assistant: chat that answers questions and suggests pieces from the catalogue
+- [ ] Product recommendations
+- [ ] Outfit generation from the catalogue
+- [ ] "Add recommended outfit to bag" in one tap
+
+## ⬜ Sprint 13 · Production · الإطلاق النهائي
+- [ ] Tests: unit, integration, end-to-end for checkout
+- [ ] Performance: Lighthouse, image sizes, bundle size
+- [ ] Security audit
+- [ ] CI/CD: tests and checks on every push, automatic deploys
+- [ ] Deployment
+- [ ] Professional README
+- [ ] Architecture diagram
+- [ ] Screenshots
+- [ ] Demo account

@@ -10,6 +10,7 @@ import type { ProductRow } from "@/lib/data";
 import { toWebp, uploadImage } from "@/lib/images";
 import { deleteProduct, saveProduct, type ProductInput } from "@/app/[locale]/admin/actions";
 import { Check, Field, Section, areaClass, inputClass } from "./ui";
+import { useIsOwner } from "./StaffRole";
 
 type Category = { slug: string; name_ar: string; name_en: string };
 
@@ -22,6 +23,7 @@ const PRESETS: Record<string, string[]> = {
 };
 
 export function ProductForm({ product, categories }: { product?: ProductRow; categories: Category[] }) {
+  const isOwner = useIsOwner();
   const t = useTranslations("admin.form");
   const locale = useLocale() as "ar" | "en";
   const router = useRouter();
@@ -277,7 +279,7 @@ export function ProductForm({ product, categories }: { product?: ProductRow; cat
             </div>
           </Section>
 
-          {f.id && (
+          {f.id && isOwner && (
             <Section title={t("delete")}>
               {confirmDelete ? (
                 <div className="grid gap-3">

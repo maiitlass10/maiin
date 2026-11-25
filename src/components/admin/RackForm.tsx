@@ -9,11 +9,13 @@ import type { ProductRow, RackRow } from "@/lib/data";
 import { removeBackground, toWebp, uploadImage } from "@/lib/images";
 import { deleteRackPiece, saveRackPiece, type RackInput } from "@/app/[locale]/admin/actions";
 import { Check, Field, Section, areaClass, inputClass } from "./ui";
+import { useIsOwner } from "./StaffRole";
 
 /** Checkerboard so a transparent cut-out is easy to judge. */
 const checker = { backgroundImage: "repeating-conic-gradient(#eee 0 25%, #fff 0 50%)", backgroundSize: "20px 20px" };
 
 export function RackForm({ piece, products }: { piece?: RackRow; products: Pick<ProductRow, "id" | "name_ar" | "name_en" | "price" | "sizes" | "description_ar" | "description_en" | "images">[] }) {
+  const isOwner = useIsOwner();
   const t = useTranslations("admin.rack");
   const tf = useTranslations("admin.form");
   const locale = useLocale();
@@ -177,7 +179,7 @@ export function RackForm({ piece, products }: { piece?: RackRow; products: Pick<
               <Check id="r-active" label={tf("isActive")} checked={f.is_active} onChange={(v) => set("is_active", v)} />
             </div>
           </Section>
-          {f.id && (
+          {f.id && isOwner && (
             <Section title={tf("delete")}>
               {confirmDelete ? (
                 <div className="flex gap-2">

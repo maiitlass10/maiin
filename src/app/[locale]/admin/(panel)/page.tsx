@@ -65,10 +65,12 @@ export default async function Dashboard({ params }: { params: Promise<{ locale: 
           <Shirt className="size-5" aria-hidden />
           {t("manageRack")}
         </Link>
-        <Link href="/admin/settings" className="flex h-12 items-center gap-2 border border-line bg-bg px-5 font-bold">
-          <Settings className="size-5" aria-hidden />
-          {t("editSettings")}
-        </Link>
+        {staff?.role === "owner" && (
+          <Link href="/admin/settings" className="flex h-12 items-center gap-2 border border-line bg-bg px-5 font-bold">
+            <Settings className="size-5" aria-hidden />
+            {t("editSettings")}
+          </Link>
+        )}
       </div>
     </div>
   );

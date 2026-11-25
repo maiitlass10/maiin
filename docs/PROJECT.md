@@ -13,7 +13,7 @@ Online clothing store for a company in Syria, built sprint by sprint. See `docs/
 - **3D rack:** taken off the homepage at the owner's request (Sprint 6). The code stays in `src/components/rack3d/` and the rack manager in admin still works, in case it comes back.
 - **Stack:** Next.js 15 (App Router) + TypeScript + Tailwind CSS 4, Supabase (database, auth, storage), deployed on Vercel.
 - **Data:** the catalogue, rack pieces and settings live in Supabase (`supabase/schema.sql`, `supabase/seed.sql`). `src/data/products.ts` is only a fallback. Read through `src/lib/data.ts`; write through the server actions in `src/app/[locale]/admin/actions.ts`, which call `revalidateTag("catalog")`.
-- **Admin:** `/[locale]/admin`, Supabase email login, access limited to rows in `public.staff`. RLS is the real guard; the UI checks are for convenience.
+- **Admin:** `/[locale]/admin`, Supabase email login, access limited to rows in `public.staff`. Roles (Sprint 7): `owner` and `editor` both add and edit products, photos and rack pieces and handle orders; only the `owner` deletes products and rack pieces, changes Settings and manages promo codes. RLS is the real guard (`is_owner()`, `supabase/sprint7.sql`); server actions check again (`guard(true)`) and the screens hide what staff can't use (`useIsOwner()`). Permission tests: `supabase/tests/`.
 
 ## Conventions
 

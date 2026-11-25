@@ -17,6 +17,12 @@ returns boolean
 language sql stable security definer set search_path = ''
 as $$ select exists (select 1 from public.staff where user_id = auth.uid()) $$;
 
+-- True when the signed-in user is on the staff list as owner (Sprint 7).
+create or replace function public.is_owner()
+returns boolean
+language sql stable security definer set search_path = ''
+as $$ select exists (select 1 from public.staff where user_id = auth.uid() and role = 'owner') $$;
+
 -- ---------- Store settings (single row) ----------
 create table if not exists public.settings (
   id int primary key default 1 check (id = 1),
@@ -109,8 +115,10 @@ create policy "read own staff row" on public.staff for select to authenticated u
 
 drop policy if exists "public read settings" on public.settings;
 create policy "public read settings" on public.settings for select to anon, authenticated using (true);
+-- Owner and editor permissions: see supabase/sprint7.sql.
 drop policy if exists "staff update settings" on public.settings;
-create policy "staff update settings" on public.settings for update to authenticated using (public.is_staff()) with check (public.is_staff());
+drop policy if exists "owner update settings" on public.settings;
+create policy "owner update settings" on public.settings for update to authenticated using (public.is_owner()) with check (public.is_owner());
 
 drop policy if exists "public read categories" on public.categories;
 create policy "public read categories" on public.categories for select to anon, authenticated using (is_active or public.is_staff());
@@ -120,12 +128,22 @@ create policy "staff write categories" on public.categories for all to authentic
 drop policy if exists "public read products" on public.products;
 create policy "public read products" on public.products for select to anon, authenticated using (is_active or public.is_staff());
 drop policy if exists "staff write products" on public.products;
-create policy "staff write products" on public.products for all to authenticated using (public.is_staff()) with check (public.is_staff());
+drop policy if exists "staff insert products" on public.products;
+drop policy if exists "staff update products" on public.products;
+drop policy if exists "owner delete products" on public.products;
+create policy "staff insert products" on public.products for insert to authenticated with check (public.is_staff());
+create policy "staff update products" on public.products for update to authenticated using (public.is_staff()) with check (public.is_staff());
+create policy "owner delete products" on public.products for delete to authenticated using (public.is_owner());
 
 drop policy if exists "public read rack" on public.rack_pieces;
 create policy "public read rack" on public.rack_pieces for select to anon, authenticated using (is_active or public.is_staff());
 drop policy if exists "staff write rack" on public.rack_pieces;
-create policy "staff write rack" on public.rack_pieces for all to authenticated using (public.is_staff()) with check (public.is_staff());
+drop policy if exists "staff insert rack" on public.rack_pieces;
+drop policy if exists "staff update rack" on public.rack_pieces;
+drop policy if exists "owner delete rack" on public.rack_pieces;
+create policy "staff insert rack" on public.rack_pieces for insert to authenticated with check (public.is_staff());
+create policy "staff update rack" on public.rack_pieces for update to authenticated using (public.is_staff()) with check (public.is_staff());
+create policy "owner delete rack" on public.rack_pieces for delete to authenticated using (public.is_owner());
 
 -- New tables are not exposed automatically in this project, so grant explicitly.
 grant usage on schema public to anon, authenticated;
@@ -134,6 +152,7 @@ grant insert, update, delete on public.categories, public.products, public.rack_
 grant update on public.settings to authenticated;
 grant select on public.staff to authenticated;
 grant execute on function public.is_staff() to anon, authenticated;
+grant execute on function public.is_owner() to authenticated;
 
 -- ---------- Photo storage ----------
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
@@ -147,8 +166,9 @@ drop policy if exists "staff change product photos" on storage.objects;
 create policy "staff change product photos" on storage.objects for update to authenticated
   using (bucket_id = 'products' and public.is_staff());
 drop policy if exists "staff delete product photos" on storage.objects;
-create policy "staff delete product photos" on storage.objects for delete to authenticated
-  using (bucket_id = 'products' and public.is_staff());
+drop policy if exists "owner delete product photos" on storage.objects;
+create policy "owner delete product photos" on storage.objects for delete to authenticated
+  using (bucket_id = 'products' and public.is_owner());
 
 -- ================= Sprint 4 additions =================
 
@@ -309,7 +329,8 @@ drop policy if exists "own wishlist" on public.wishlist_items;
 create policy "own wishlist" on public.wishlist_items for all to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
 
 drop policy if exists "staff manage promos" on public.promo_codes;
-create policy "staff manage promos" on public.promo_codes for all to authenticated using (public.is_staff()) with check (public.is_staff());
+drop policy if exists "owner manage promos" on public.promo_codes;
+create policy "owner manage promos" on public.promo_codes for all to authenticated using (public.is_owner()) with check (public.is_owner());
 
 drop policy if exists "own orders" on public.orders;
 create policy "own orders" on public.orders for select to authenticated using (user_id = auth.uid());

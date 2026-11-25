@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath, revalidateTag } from "next/cache";
+import { getTranslations } from "next-intl/server";
 import { serverClient, currentStaff } from "@/lib/supabase/server";
 import { CATALOG_TAG } from "@/lib/supabase/public";
 
@@ -18,9 +19,19 @@ function refresh() {
   revalidatePath("/", "layout");
 }
 
-async function guard() {
+/**
+ * Checks the caller is staff (and, for owner-only actions, the owner) before
+ * touching the database. Row level security enforces the same rules in the
+ * database (supabase/sprint7.sql); this check gives a clear message instead of
+ * a silent "nothing changed".
+ */
+async function guard(ownerOnly = false) {
   const staff = await currentStaff();
   if (!staff) throw new Error("not signed in as staff");
+  if (ownerOnly && staff.role !== "owner") {
+    const t = await getTranslations("admin.ownerOnly");
+    throw new Error(t("action"));
+  }
   return serverClient();
 }
 
@@ -93,7 +104,7 @@ export async function setProductActive(id: string, active: boolean): Promise<Act
 
 export async function deleteProduct(id: string): Promise<ActionResult> {
   try {
-    const supabase = await guard();
+    const supabase = await guard(true);
     const { error } = await supabase.from("products").delete().eq("id", id);
     if (error) return { ok: false, error: error.message };
     refresh();
@@ -156,7 +167,7 @@ export async function saveRackPiece(input: RackInput): Promise<ActionResult> {
 
 export async function deleteRackPiece(id: string): Promise<ActionResult> {
   try {
-    const supabase = await guard();
+    const supabase = await guard(true);
     const { error } = await supabase.from("rack_pieces").delete().eq("id", id);
     if (error) return { ok: false, error: error.message };
     refresh();
@@ -192,7 +203,7 @@ const link = (v: unknown) => {
 
 export async function saveSettings(input: SettingsInput): Promise<ActionResult> {
   try {
-    const supabase = await guard();
+    const supabase = await guard(true);
     const rate = money(input.syp_per_usd);
     const free = money(input.free_shipping_from);
     const fee = money(input.shipping_fee);
@@ -245,7 +256,7 @@ export type PromoInput = {
 
 export async function savePromo(input: PromoInput): Promise<ActionResult> {
   try {
-    const supabase = await guard();
+    const supabase = await guard(true);
     const code = clean(input.code, 30).toUpperCase();
     if (!/^[A-Z0-9_-]{3,30}$/.test(code)) return { ok: false, error: "invalid code" };
     const value = money(input.value);
@@ -274,7 +285,7 @@ export async function savePromo(input: PromoInput): Promise<ActionResult> {
 
 export async function deletePromo(code: string): Promise<ActionResult> {
   try {
-    const supabase = await guard();
+    const supabase = await guard(true);
     const { error } = await supabase.from("promo_codes").delete().eq("code", code);
     if (error) return { ok: false, error: error.message };
     revalidatePath("/", "layout");

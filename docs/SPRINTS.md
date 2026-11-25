@@ -98,7 +98,8 @@ Today: Supabase schema with RLS, email login, `staff` table, `.env` with the pub
 - [ ] Database audit: schema reviewed (12 tables, all with RLS, orders priced in the database); live checks wait for the owner's read-only queries
 - [x] RLS review: every table and storage bucket reviewed, no gaps found (promo rate limit planned for Sprint 13)
 - [x] Auth reviewed: sign-up, login, reset and redirects work on previews; "Confirm email" back on with the email service (Sprint 9)
-- [ ] Roles: owner / editor permissions proposed in the audit, waiting for the owner's decision
+- [x] Roles: owner / editor permissions (owner only: delete, settings, promo codes); database rules, server checks and admin screens; tests in `supabase/tests/`
+- [ ] Owner: run `supabase/sprint7.sql` in the SQL Editor
 - [x] Environment variables: `docs/ENVIRONMENT.md`, `.env.local` and `.vercel` ignored, previews never indexed (`NEXT_PUBLIC_ALLOW_INDEXING`), security headers
 - [x] Error handling: friendly error page and last-resort global error page
 - [x] CI also runs on `sprint-*` branches

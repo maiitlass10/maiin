@@ -3,6 +3,7 @@ import { ExternalLink, LogOut } from "lucide-react";
 import { Link, redirect } from "@/i18n/navigation";
 import { currentStaff } from "@/lib/supabase/server";
 import { AdminNav } from "@/components/admin/AdminNav";
+import { StaffRoleProvider } from "@/components/admin/StaffRole";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { signOut } from "../actions";
 
@@ -22,6 +23,7 @@ export default async function PanelLayout({ children, params }: { children: Reac
   }
 
   return (
+    <StaffRoleProvider role={staff!.role}>
     <div className="lg:grid lg:min-h-dvh lg:grid-cols-[240px_minmax(0,1fr)]">
       <aside className="sticky top-0 z-30 border-b border-line bg-bg lg:h-dvh lg:border-b-0 lg:border-e">
         <div className="gutter flex items-center justify-between gap-3 py-3 lg:block lg:px-4 lg:py-5">
@@ -37,9 +39,10 @@ export default async function PanelLayout({ children, params }: { children: Reac
           <AdminNav />
         </div>
         <div className="hidden gap-1 border-t border-line p-3 lg:absolute lg:inset-x-0 lg:bottom-0 lg:grid">
-          <p className="truncate px-3 pb-1 text-xs text-muted" dir="ltr">
+          <p className="truncate px-3 text-xs text-muted" dir="ltr">
             {staff!.user.email}
           </p>
+          <p className="px-3 pb-1 text-xs font-semibold">{t(`ownerOnly.role_${staff!.role}`)}</p>
           <Link href="/" className="flex h-10 items-center gap-2 px-3 text-sm hover:bg-soft">
             <ExternalLink className="size-4" aria-hidden />
             {t("store")}
@@ -65,5 +68,6 @@ export default async function PanelLayout({ children, params }: { children: Reac
         </form>
       </main>
     </div>
+    </StaffRoleProvider>
   );
 }

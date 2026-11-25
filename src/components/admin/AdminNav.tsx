@@ -3,18 +3,20 @@
 import { useTranslations } from "next-intl";
 import { LayoutDashboard, Package, Receipt, Settings, Shirt, Tag } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
+import { useIsOwner } from "./StaffRole";
 
 export function AdminNav() {
   const t = useTranslations("admin.nav");
   const path = usePathname();
+  const isOwner = useIsOwner();
   const items = [
     { href: "/admin", label: t("dashboard"), icon: LayoutDashboard, exact: true },
     { href: "/admin/orders", label: t("orders"), icon: Receipt },
     { href: "/admin/products", label: t("products"), icon: Package },
     { href: "/admin/rack", label: t("rack"), icon: Shirt },
-    { href: "/admin/promos", label: t("promos"), icon: Tag },
-    { href: "/admin/settings", label: t("settings"), icon: Settings },
-  ];
+    { href: "/admin/promos", label: t("promos"), icon: Tag, ownerOnly: true },
+    { href: "/admin/settings", label: t("settings"), icon: Settings, ownerOnly: true },
+  ].filter((item) => isOwner || !item.ownerOnly);
   return (
     <nav aria-label={t("dashboard")} className="no-scrollbar flex gap-1 overflow-x-auto lg:flex-col">
       {items.map(({ href, label, icon: Icon, exact }) => {

@@ -1,10 +1,13 @@
 import { setRequestLocale } from "next-intl/server";
-import { serverClient } from "@/lib/supabase/server";
+import { currentStaff, serverClient } from "@/lib/supabase/server";
+import { OwnerOnlyNotice } from "@/components/admin/StaffRole";
 import { SettingsForm } from "@/components/admin/SettingsForm";
 
 export default async function SettingsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  // Owner only (supabase/sprint7.sql); staff see a short notice instead.
+  if ((await currentStaff())?.role !== "owner") return <OwnerOnlyNotice />;
   const supabase = await serverClient();
   const { data } = await supabase.from("settings").select("*").eq("id", 1).maybeSingle();
   return (

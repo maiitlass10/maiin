@@ -43,9 +43,9 @@ Status: ✅ already fine · 🔧 fixed in Sprint 7 · 👤 needs the owner · �
 
 | Finding | Status |
 |---|---|
-| The `staff` table already has `owner` and `editor`, and every admin action checks the user is staff. But both roles can do everything, including the dollar rate, the Sham Cash account and deleting products. | 👤 Decide the permissions below; then the database rules and the admin screens follow (needs a SQL file the owner runs). |
+| The `staff` table already has `owner` and `editor`, and every admin action checks the user is staff. But both roles could do everything, including the dollar rate, the Sham Cash account and deleting products. | 🔧 Owner approved the permissions below. Database rules in `supabase/sprint7.sql` (👤 the owner runs it), server actions refuse owner-only actions for staff, and the admin hides Settings, Promo codes and Delete from staff. Tested on a local PostgreSQL with `supabase/tests/`. |
 
-Proposed permissions:
+Permissions (approved by the owner):
 
 | Action | Owner | Editor |
 |---|---|---|

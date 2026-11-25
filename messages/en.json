@@ -395,6 +395,13 @@
       "whatsapp": "WhatsApp",
       "newOrders": "New orders",
       "autoCancelled": "Cancelled {count} Sham Cash orders with no receipt after 24 hours."
+    },
+    "ownerOnly": {
+      "title": "Owner only",
+      "text": "This section changes sensitive settings such as the dollar rate, the Sham Cash account and promo codes, so only the store owner can open it. Ask the owner if something needs changing.",
+      "action": "Only the owner can do this.",
+      "role_owner": "Owner",
+      "role_editor": "Staff"
     }
   },
   "account": {
